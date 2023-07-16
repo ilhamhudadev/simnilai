@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/module/home/controller/home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +11,7 @@ class HomeScreen extends StatelessWidget {
       builder: (HomeController controller) {
         return Scaffold(
           appBar: AppBar(
-            backgroundColor: Colors.redAccent,
+            backgroundColor: AppColors.purplePiksi,
             title: Container(
               child: Row(
                 children: [
