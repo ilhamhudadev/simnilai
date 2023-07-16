@@ -1,0 +1,6 @@
+2023/05/14-13:51:46.188 8107 Creating DB /private/var/folders/tm/k3pjzxl95ss72hkn8h0cz0_40000gn/T/flutter_tools.Xwjr3F/flutter_tools_chrome_device.9JByEu/Default/IndexedDB/https_shopee.co.id_0.indexeddb.leveldb since it was missing.
+2023/05/14-13:51:46.247 8107 Reusing MANIFEST /private/var/folders/tm/k3pjzxl95ss72hkn8h0cz0_40000gn/T/flutter_tools.Xwjr3F/flutter_tools_chrome_device.9JByEu/Default/IndexedDB/https_shopee.co.id_0.indexeddb.leveldb/MANIFEST-000001
+2023/05/14-13:51:46.328 f603 Level-0 table #5: started
+2023/05/14-13:51:46.348 f603 Level-0 table #5: 627 bytes OK
+2023/05/14-13:51:46.389 f603 Delete type=0 #3
+2023/05/14-13:51:46.390 8603 Manual compaction at level-0 from '\x00\x01\x00\x00\x00' @ 72057594037927935 : 1 .. '\x00\x02\x00\x00\x00' @ 0 : 0; will stop at (end)
