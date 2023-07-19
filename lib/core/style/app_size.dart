@@ -10,11 +10,7 @@ class AppSize {
   void init(BuildContext context) {
     _mediaQueryData = MediaQuery.of(context);
 
-    if (_mediaQueryData.size.width <= 500) {
-      screenWidth = _mediaQueryData.size.width;
-    } else {
-      screenWidth = 500;
-    }
+    screenWidth = _mediaQueryData.size.width;
 
     screenHeight = _mediaQueryData.size.height;
     orientation = _mediaQueryData.orientation;
