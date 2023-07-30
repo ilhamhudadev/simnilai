@@ -3,6 +3,9 @@ import 'dart:ui';
 class AppColors {
   //Primary Color
   static const purplePiksi = Color(0xff300357);
+  static const abukusuka = Color.fromARGB(255, 234, 229, 229);
+  static const WRPP = Color.fromARGB(255, 247, 236, 251);
+  static const abukolom = Color.fromARGB(255, 189, 188, 188);
   static const cyberyellow = Color(0xfffed000);
   static const eerieblack = Color(0xff252525);
   static const eerieblack80 = Color(0xcc252525);
