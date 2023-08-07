@@ -12,7 +12,7 @@ class ProfileScreen extends StatelessWidget {
       init: ProfileController(),
       builder: (ProfileController controller) {
         return Scaffold(
-          backgroundColor: Color.fromARGB(255, 79, 27, 125),
+          backgroundColor: AppColors.abukusuka,
           body: SingleChildScrollView(
               scrollDirection: Axis.vertical,
               child: Container(
@@ -46,28 +46,17 @@ class ProfileScreen extends StatelessWidget {
   Widget ppkiri(context) {
     return Container(
       width: 350,
-      height: 460,
+      height: 400,
       margin: EdgeInsets.only(top: 100, left: 20),
       decoration: BoxDecoration(
           color: AppColors.WRPP, borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
           Container(
-              width: 120,
-              height: 120,
-              margin: EdgeInsets.only(top: 30),
-              decoration: BoxDecoration(
-                  color: AppColors.abukolom,
-                  borderRadius: BorderRadius.circular(100)),
-              child: Icon(
-                Icons.person,
-                size: 100,
-              )),
-          Container(
               width: 400,
               height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 40),
-              padding: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: 1, right: 1, top: 10),
+              padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
@@ -84,12 +73,13 @@ class ProfileScreen extends StatelessWidget {
                   Text("21200011")
                 ],
               )),
-          SizedBox(height: 20),
+          Divider(),
+          SizedBox(height: 10),
           Container(
               width: 400,
               height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 10, right: 10),
+              margin: EdgeInsets.only(left: 1, right: 1),
+              padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
                 color: AppColors.WRPP,
               ),
@@ -100,12 +90,13 @@ class ProfileScreen extends StatelessWidget {
                   Text("Alpin Agung nugroho")
                 ],
               )),
-          SizedBox(height: 20),
+          Divider(),
+          SizedBox(height: 10),
           Container(
               width: 400,
               height: 30,
               margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
                 color: AppColors.WRPP,
               ),
@@ -116,7 +107,26 @@ class ProfileScreen extends StatelessWidget {
                   Text("DDT-20/21")
                 ],
               )),
-          SizedBox(height: 20),
+          Divider(),
+          SizedBox(height: 10),
+          Container(
+              width: 400,
+              height: 30,
+              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
+                color: AppColors.WRPP,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Jenis Kelamin",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text("Laki-Laki")
+                ],
+              )),
+          Divider(),
+          SizedBox(height: 10),
           Container(
               width: 400,
               height: 30,
@@ -132,7 +142,25 @@ class ProfileScreen extends StatelessWidget {
                       style: TextStyle(fontWeight: FontWeight.bold)),
                   Text("MIF/SI")
                 ],
-              ))
+              )),
+          Divider(),
+          SizedBox(height: 10),
+          Container(
+              width: 400,
+              height: 30,
+              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
+              padding: EdgeInsets.only(left: 20, right: 20),
+              decoration: BoxDecoration(
+                color: AppColors.WRPP,
+              ),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Text("Semester",
+                      style: TextStyle(fontWeight: FontWeight.bold)),
+                  Text("5")
+                ],
+              )),
         ],
       ),
     );
@@ -141,28 +169,28 @@ class ProfileScreen extends StatelessWidget {
   Container ppkanan(context) {
     return Container(
       width: 800,
+      height: 400,
       margin: EdgeInsets.only(top: 100, right: 70),
-      padding: EdgeInsets.only(top: 50, bottom: 50),
       decoration: BoxDecoration(
-          color: AppColors.WRPP, borderRadius: BorderRadius.circular(10)),
+          color: Colors.white, borderRadius: BorderRadius.circular(10)),
       child: Column(
         children: [
           atributkanan('Nama Lengkap', 'Alpin Agung Nugroho'),
           Divider(),
           atributkanan('Tempat Lahir', 'Bandung'),
           Divider(),
-          atributkanan('jenis Kelamin', 'Laki-Laki'),
-          Divider(),
           atributkanan('Tanggal lahir', '18 September 2003'),
           Divider(),
-          atributkanan('Agama', 'islam'),
+          atributkanan('Agama', 'Islam'),
+          Divider(),
           atributkanan('Alamat', 'Kp.ranca enong rt2 rw16'),
-          atributkanan('No.Hp', '085798331352'),
+          Divider(),
+          atributkanan('N0. Hp', '085798331352'),
           Column(
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               Container(
-                padding: EdgeInsets.only(top: 20),
+                padding: EdgeInsets.only(top: 10),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.start,
                   children: [
@@ -190,7 +218,7 @@ class ProfileScreen extends StatelessWidget {
         child:
             Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
           Text("Program Studi"),
-          Text("MIf"),
+          Text("MIF"),
         ]));
   }
 
@@ -263,7 +291,15 @@ class ProfileScreen extends StatelessWidget {
         decoration: BoxDecoration(color: AppColors.WRPP),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [Text(isi1), Text(isi2)],
+          children: [
+            Text(
+              isi1,
+              style: TextStyle(fontWeight: FontWeight.bold),
+            ),
+            Text(
+              isi2,
+            )
+          ],
         ));
   }
 }
