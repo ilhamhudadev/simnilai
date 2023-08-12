@@ -2,6 +2,7 @@ import 'package:standard_project/module/grade/academic/screen/academic_screen.da
 import 'package:standard_project/module/grade/student/screen/student_screen.dart';
 import 'package:standard_project/module/profile/screen/view_user.dart';
 import 'package:standard_project/module/study/screen/study_screen.dart';
+import 'package:standard_project/module/grade/academic/screen/kelas.dart';
 
 class RouteConstant {
   // static const homeScreen = '/homeScreen';
@@ -11,4 +12,6 @@ class RouteConstant {
   static const StudyScreen = '/StudyScreen';
   static const TeacherScreen = '/TeacherScreen';
   static const AcademicScreen = '/academicscreen';
+  static const TranskipScreen = '/transkipscreen';
+  static const KelasScreen = '/kelasscreen';
 }

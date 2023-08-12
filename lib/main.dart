@@ -32,7 +32,7 @@ class MainScreen extends StatelessWidget {
       translations: AppLanguage(),
       locale: appLocale,
       getPages: AppRoute.all,
-      initialRoute: RouteConstant.homeScreen,
+      initialRoute: RouteConstant.KelasScreen,
       debugShowCheckedModeBanner: false,
       defaultTransition: Transition.rightToLeft,
     );
