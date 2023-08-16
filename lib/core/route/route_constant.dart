@@ -1,5 +1,3 @@
-import 'package:standard_project/module/profile/screen/profile_screen.dart';
-
 class RouteConstant {
   static const homeScreen = '/homeScreen';
   static const auth_screen = '/Authscreen';
@@ -8,4 +6,5 @@ class RouteConstant {
   static const teacher = '/Teacher';
   static const TeacherScreen = '/TeacherScreen';
   static const viewnilaiacademic = '/viewnilaiacademic';
+  static const loginScreen = '/loginscreen';
 }

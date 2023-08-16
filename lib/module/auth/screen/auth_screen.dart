@@ -13,74 +13,139 @@ class AuthScreen extends StatelessWidget {
       builder: (AuthController controller) {
         return Scaffold(
           body: Container(
-            width: AppSize.screenWidth,
-            height: AppSize.screenHeight,
-            decoration: BoxDecoration(
-              gradient: RadialGradient(
-                colors: [
-                  Color.fromARGB(255, 137, 25, 218),
-                  Color.fromARGB(255, 171, 53, 255),
-                  Color.fromARGB(255, 191, 107, 250),
-                  Color.fromARGB(255, 209, 147, 253),
-                ],
-                center: Alignment.center,
-                focal: Alignment.topLeft,
-                focalRadius: 0.2,
-                radius: 1.5,
-              ),
-            ),
-            child: Container(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+            child: Center(
+              child: Row(
                 children: [
-                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                    Container(
-                      width: 350,
-                      height: 350,
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(20)),
+                  Container(
+                    width: 800,
+                    height: 700,
+                    color: AppColors.purplePiksi,
+                    child: Center(
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           Container(
-                              width: 250,
-                              height: 40,
-                              child: Center(
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: 'Username',
-                                    prefixIcon: Icon(Icons.person),
-                                  ),
-                                ),
-                              )),
-                          Container(
-                              width: 250,
-                              height: 40,
-                              margin: EdgeInsets.only(top: 20),
-                              decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(6),
-                                  border: Border.all(color: Colors.black)),
-                              child: Center(
-                                child: TextFormField(
-                                  decoration: InputDecoration(
-                                    labelText: 'Password',
-                                    prefixIcon: Icon(Icons.lock),
-                                  ),
-                                  obscureText: true,
-                                ),
-                              )),
-                          Container(
-                            child: Column(
+                            child: Row(
                               children: [
-                                button(),
+                                Container(
+                                  width: 130,
+                                  height: 130,
+                                  margin: EdgeInsets.only(top: 200, left: 70),
+                                  decoration: BoxDecoration(
+                                    image: DecorationImage(
+                                        image: NetworkImage(
+                                            'https://tse4.mm.bing.net/th?id=OIP.v2EJ6yhWzDCJ_v6qIXWlrgHaHa&pid=Api&P=0&h=180'),
+                                        fit: BoxFit.cover),
+                                    borderRadius: BorderRadius.circular(100),
+                                  ),
+                                ),
+                                Container(
+                                  width: 3,
+                                  height: 125,
+                                  color: Colors.white,
+                                  margin: EdgeInsets.only(top: 200, left: 20),
+                                ),
+                                Container(
+                                  child: Column(
+                                    children: [
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            top: 200, right: 65),
+                                        child: Text(
+                                          'PORTAL MAHASISWA',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 45,
+                                              color: Colors.white),
+                                        ),
+                                      ),
+                                      Container(
+                                        margin: EdgeInsets.only(
+                                            right: 60, left: 10),
+                                        child: Text(
+                                          'POLITEKNIK PIKSI GANESHA',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold,
+                                              fontSize: 35,
+                                              color: Colors.white),
+                                        ),
+                                      )
+                                    ],
+                                  ),
+                                )
                               ],
                             ),
-                          )
+                          ),
+                          Container(),
+                          Container()
                         ],
                       ),
-                    )
-                  ]),
+                    ),
+                  ),
+                  Container(
+                    width: 480,
+                    height: 700,
+                    color: AppColors.abukusuka,
+                    child: Column(
+                      children: [
+                        Container(
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Column(
+                                children: [
+                                  Container(
+                                    margin:
+                                        EdgeInsets.only(top: 150, right: 240),
+                                    child: Text(
+                                      'Signin mahasiswa',
+                                      style: TextStyle(
+                                          fontWeight: FontWeight.bold,
+                                          fontSize: 25),
+                                    ),
+                                  ),
+                                  Container(
+                                      width: 480,
+                                      height: 40,
+                                      margin: EdgeInsets.only(top: 20),
+                                      padding:
+                                          EdgeInsets.only(right: 20, left: 20),
+                                      child: Center(
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: 'Username',
+                                            prefixIcon: Icon(Icons.person),
+                                          ),
+                                        ),
+                                      )),
+                                  Container(
+                                      width: 480,
+                                      height: 40,
+                                      margin: EdgeInsets.only(top: 20),
+                                      padding:
+                                          EdgeInsets.only(right: 20, left: 20),
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(6),
+                                      ),
+                                      child: Center(
+                                        child: TextFormField(
+                                          decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: 'Password',
+                                            prefixIcon: Icon(Icons.lock),
+                                          ),
+                                          obscureText: true,
+                                        ),
+                                      )),
+                                  button(),
+                                ],
+                              )
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -95,9 +160,11 @@ class AuthScreen extends StatelessWidget {
       onTap: () {},
       borderRadius: BorderRadius.circular(20),
       child: Container(
-          width: 150,
+          width: 450,
           height: 35,
-          margin: EdgeInsets.all(10),
+          margin: EdgeInsets.only(
+            top: 15,
+          ),
           padding: EdgeInsets.only(left: 10, right: 10),
           decoration: BoxDecoration(
             color: AppColors.purplePiksi,
@@ -105,7 +172,7 @@ class AuthScreen extends StatelessWidget {
           ),
           child: Center(
             child: Text(
-              "Ubah password",
+              "Login",
               style: TextStyle(color: Colors.white),
             ),
           )),
