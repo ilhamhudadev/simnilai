@@ -29,7 +29,7 @@ class KelasScreen extends StatelessWidget {
                           ),
                           Container(
                             padding: EdgeInsets.only(
-                                right: 1100, left: 60, bottom: 15),
+                                right: 1120, left: 60, bottom: 15),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -44,7 +44,7 @@ class KelasScreen extends StatelessWidget {
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold)),
-                                Text("Transkip Nilai",
+                                Text("Transkip kelas",
                                     style: TextStyle(
                                         fontSize: 15,
                                         fontWeight: FontWeight.bold,
@@ -72,8 +72,8 @@ class KelasScreen extends StatelessWidget {
                             child: Container(
                               child: Column(
                                 children: [
-                                  findstudent(),
                                   cari(),
+                                  findstudent(),
                                   headersection(),
                                   methode(controller),
                                   buttonsection()
@@ -117,7 +117,8 @@ class KelasScreen extends StatelessWidget {
             decoration: InputDecoration(
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
-                labelText: 'kelas'),
+                labelText: 'masukan kelas',
+                labelStyle: TextStyle(fontSize: 15)),
           ),
         ),
         Container(
@@ -135,7 +136,8 @@ class KelasScreen extends StatelessWidget {
             decoration: InputDecoration(
                 border:
                     OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
-                labelText: 'matakuliah'),
+                labelText: 'masukan matakuliah',
+                labelStyle: TextStyle(fontSize: 15)),
           ),
         ),
         Container(

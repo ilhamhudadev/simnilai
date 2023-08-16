@@ -28,7 +28,7 @@ class AcademicScreen extends StatelessWidget {
                           ),
                           Container(
                             padding: EdgeInsets.only(
-                                right: 1100, left: 80, bottom: 15),
+                                right: 1120, left: 60, bottom: 15),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -54,15 +54,15 @@ class AcademicScreen extends StatelessWidget {
                           Container(
                             padding: EdgeInsets.only(top: 20, bottom: 20),
                             margin: EdgeInsets.only(
-                                top: 20, left: 50, right: 50, bottom: 50),
+                                top: 10, left: 50, right: 50, bottom: 50),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
                               boxShadow: [
                                 BoxShadow(
-                                  color: Colors.grey.withOpacity(0.2),
+                                  color: Colors.grey.withOpacity(0.8),
                                   spreadRadius: 5,
-                                  blurRadius: 7,
+                                  blurRadius: 20,
                                   offset: Offset(
                                       0, 3), // changes position of shadow
                                 ),
@@ -92,7 +92,7 @@ class AcademicScreen extends StatelessWidget {
 
   Widget methode(controller) {
     return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 0),
+      constraints: BoxConstraints(),
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
@@ -106,33 +106,55 @@ class AcademicScreen extends StatelessWidget {
 
   Widget cari() {
     return Container(
-      padding: EdgeInsets.only(top: 10, left: 880),
+      margin: EdgeInsets.only(left: 20),
+      padding: EdgeInsets.only(top: 10, left: 20),
       child: Row(children: [
         Container(
-          width: 250,
+          width: 288,
           height: 30,
-          margin: EdgeInsets.only(top: 10, left: 15),
+          decoration: BoxDecoration(),
           child: TextField(
             decoration: InputDecoration(
-                border: OutlineInputBorder(), labelText: 'Search'),
+                border:
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
+                labelText: 'Search'),
           ),
         ),
-        SizedBox(
-          width: 10,
-        ),
         Container(
-          width: 60,
+          width: 70,
           height: 30,
-          margin: EdgeInsets.only(top: 10),
           decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(8), color: Colors.blue),
+              borderRadius: BorderRadius.only(
+                  topRight: Radius.circular(30),
+                  bottomRight: Radius.circular(30)),
+              color: Colors.blue),
           child: Icon(
             Icons.search,
             color: Colors.white,
           ),
         ),
-        SizedBox(
-          width: 10,
+        Container(
+          width: 100,
+          height: 30,
+          margin: EdgeInsets.only(left: 730),
+          decoration: BoxDecoration(
+              color: Colors.deepPurple,
+              borderRadius: BorderRadius.circular(30)),
+          padding: EdgeInsets.only(left: 18, right: 18),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Icon(
+                Icons.refresh_sharp,
+                size: 20,
+                color: Colors.white,
+              ),
+              Text(
+                "search",
+                style: TextStyle(color: Colors.white),
+              )
+            ],
+          ),
         ),
       ]),
     );
@@ -140,6 +162,8 @@ class AcademicScreen extends StatelessWidget {
 
   Widget findstudent() {
     return Container(
+      padding: EdgeInsets.only(top: 10),
+      margin: EdgeInsets.only(bottom: 20),
       child: Column(
         children: [
           Container(
@@ -189,16 +213,26 @@ class AcademicScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 10, left: 40, right: 40),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
+                  margin: EdgeInsets.only(right: 176),
                   child: Text(
                     "Program/Jurusan",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  width: 900,
+                  margin: EdgeInsets.only(right: 20),
+                  width: 410,
+                  height: 40,
+                  decoration: BoxDecoration(
+                      color: AppColors.abukusuka,
+                      borderRadius: BorderRadius.circular(5),
+                      border: Border.all(width: 0.1)),
+                ),
+                Container(
+                  width: 470,
                   height: 40,
                   decoration: BoxDecoration(
                       color: AppColors.abukusuka,
@@ -432,7 +466,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.No}"),
+            child: Center(child: Text("${model.No}")),
           ),
           Container(
             width: 200,
@@ -443,7 +477,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.KodeMatakuliah}"),
+            child: Center(child: Text("${model.KodeMatakuliah}")),
           ),
           Container(
             width: 340,
@@ -454,7 +488,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.NamaMatakuliah}"),
+            child: Center(child: Text("${model.NamaMatakuliah}")),
           ),
           Container(
             width: 100,
@@ -465,7 +499,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.SKS}"),
+            child: Center(child: Text("${model.SKS}")),
           ),
           Container(
             width: 100,
@@ -476,7 +510,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.UTS}"),
+            child: Center(child: Text("${model.UTS}")),
           ),
           Container(
             width: 100,
@@ -487,7 +521,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.UAS}"),
+            child: Center(child: Text("${model.UAS}")),
           ),
           Container(
             width: 150,
@@ -498,7 +532,7 @@ class AcademicScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.NilaiHuruf}"),
+            child: Center(child: Text("${model.NilaiHuruf}")),
           ),
           Container(
             width: 150,
@@ -510,7 +544,7 @@ class AcademicScreen extends StatelessWidget {
                 right: BorderSide(width: 0.5),
               ),
             ),
-            child: Text("${model.NilaiAngka}"),
+            child: Center(child: Text("${model.NilaiAngka}")),
           ),
         ],
       ),

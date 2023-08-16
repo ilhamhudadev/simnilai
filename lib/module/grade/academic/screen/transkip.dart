@@ -28,7 +28,7 @@ class TranskipScreen extends StatelessWidget {
                           ),
                           Container(
                             padding: EdgeInsets.only(
-                                right: 1100, left: 60, bottom: 15),
+                                right: 1120, left: 60, bottom: 15),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -104,11 +104,11 @@ class TranskipScreen extends StatelessWidget {
 
   Widget cari() {
     return Container(
-      margin: EdgeInsets.only(left: 740),
+      margin: EdgeInsets.only(left: 20),
       padding: EdgeInsets.only(top: 10, left: 20),
       child: Row(children: [
         Container(
-          width: 330,
+          width: 288,
           height: 30,
           decoration: BoxDecoration(),
           child: TextField(
@@ -132,9 +132,9 @@ class TranskipScreen extends StatelessWidget {
           ),
         ),
         Container(
-          width: 60,
+          width: 100,
           height: 30,
-          margin: EdgeInsets.only(left: 5),
+          margin: EdgeInsets.only(left: 730),
           decoration: BoxDecoration(
               color: Colors.deepPurple,
               borderRadius: BorderRadius.circular(30)),
@@ -147,6 +147,10 @@ class TranskipScreen extends StatelessWidget {
                 size: 20,
                 color: Colors.white,
               ),
+              Text(
+                "search",
+                style: TextStyle(color: Colors.white),
+              )
             ],
           ),
         ),
