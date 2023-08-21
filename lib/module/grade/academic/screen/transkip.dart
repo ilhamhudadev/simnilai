@@ -5,7 +5,7 @@ import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/grade/academic/data/model/academic.dart';
 import '../controller/academic_controller.dart';
 
-class TranskipScreen extends StatelessWidget {
+class TranskripScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSize().init(context);
