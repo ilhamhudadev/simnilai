@@ -49,7 +49,17 @@ class ProfileScreen extends StatelessWidget {
       height: 400,
       margin: EdgeInsets.only(top: 100, left: 20),
       decoration: BoxDecoration(
-          color: AppColors.WRPP, borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
       child: Column(
         children: [
           Container(
@@ -61,7 +71,7 @@ class ProfileScreen extends StatelessWidget {
                 borderRadius: BorderRadius.only(
                     topLeft: Radius.circular(10),
                     topRight: Radius.circular(10)),
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -81,7 +91,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.only(left: 1, right: 1),
               padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -98,7 +108,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.only(left: 1, right: 1, top: 1),
               padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -115,7 +125,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.only(left: 1, right: 1, top: 1),
               padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -133,7 +143,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.only(left: 1, right: 1, top: 1),
               padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -151,7 +161,7 @@ class ProfileScreen extends StatelessWidget {
               margin: EdgeInsets.only(left: 1, right: 1, top: 1),
               padding: EdgeInsets.only(left: 20, right: 20),
               decoration: BoxDecoration(
-                color: AppColors.WRPP,
+                color: Colors.white,
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -161,6 +171,7 @@ class ProfileScreen extends StatelessWidget {
                   Text("5")
                 ],
               )),
+          Divider()
         ],
       ),
     );
@@ -172,7 +183,17 @@ class ProfileScreen extends StatelessWidget {
       height: 400,
       margin: EdgeInsets.only(top: 100, right: 70),
       decoration: BoxDecoration(
-          color: Colors.white, borderRadius: BorderRadius.circular(10)),
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          BoxShadow(
+            color: Colors.grey.withOpacity(0.5),
+            spreadRadius: 5,
+            blurRadius: 7,
+            offset: Offset(0, 3), // changes position of shadow
+          ),
+        ],
+      ),
       child: Column(
         children: [
           atributkanan('Nama Lengkap', 'Alpin Agung Nugroho'),
@@ -230,27 +251,84 @@ class ProfileScreen extends StatelessWidget {
             barrierDismissible: true, // user must tap button!
             builder: (BuildContext context) {
               return AlertDialog(
+                title: Container(
+                  padding: EdgeInsets.only(right: 15),
+                  height: 60,
+                  color: AppColors.purplePiksi,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Text(
+                          "Edit Password",
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
+                ),
                 content: Container(
                   width: 300,
                   height: 200,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
                     children: [
-                      TextField(
-                        decoration: InputDecoration(labelText: 'Password baru'),
+                      Container(
+                        child: Row(
+                          children: [Text('Password baru')],
+                        ),
                       ),
-                      TextField(
-                        decoration:
-                            InputDecoration(labelText: 'konfirmasi password '),
+                      Container(
+                        width: 350,
+                        height: 30,
+                        margin: EdgeInsets.only(top: 5),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Password baru',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(top: 20),
+                        child: Row(
+                          children: [Text('Konfirmasi password')],
+                        ),
+                      ),
+                      Container(
+                        width: 350,
+                        height: 30,
+                        margin: EdgeInsets.only(top: 5),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            labelText: 'konfirmasi password ',
+                            border: OutlineInputBorder(),
+                          ),
+                        ),
                       ),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          Container(
-                            margin:
-                                EdgeInsets.only(left: 50, right: 45, top: 20),
-                            child: buttonCount(context, "Konfirmasi"),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.start,
+                            children: [
+                              Container(
+                                margin: EdgeInsets.only(right: 45, top: 20),
+                                child: buttonCount(context, "Konfirmasi"),
+                              ),
+                            ],
                           )
                         ],
                       )
@@ -288,7 +366,7 @@ class ProfileScreen extends StatelessWidget {
         height: 30,
         padding: EdgeInsets.only(left: 20, right: 20),
         margin: EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(color: AppColors.WRPP),
+        decoration: BoxDecoration(color: Colors.white),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
@@ -313,8 +391,8 @@ Widget buttonCount(contaxt, isibtn) {
     child: Container(
         width: 150,
         height: 35,
-        margin: EdgeInsets.all(10),
-        padding: EdgeInsets.only(left: 10, right: 10),
+        margin: EdgeInsets.all(5),
+        padding: EdgeInsets.only(right: 10),
         decoration: BoxDecoration(
           color: AppColors.purplePiksi,
           borderRadius: BorderRadius.circular(8),
