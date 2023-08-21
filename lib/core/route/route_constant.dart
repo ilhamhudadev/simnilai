@@ -6,5 +6,4 @@ class RouteConstant {
   static const teacher = '/Teacher';
   static const TeacherScreen = '/TeacherScreen';
   static const viewnilaiacademic = '/viewnilaiacademic';
-  static const loginScreen = '/loginscreen';
 }
