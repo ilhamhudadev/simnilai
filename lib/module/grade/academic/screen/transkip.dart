@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
-import 'package:standard_project/module/grade/academic/controller/academic_controller.dart';
 import 'package:standard_project/module/grade/academic/data/model/academic.dart';
+import '../controller/academic_controller.dart';
 
-class AcademicScreen extends StatelessWidget {
+class TranskipScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSize().init(context);
@@ -72,8 +72,6 @@ class AcademicScreen extends StatelessWidget {
                               child: Column(
                                 children: [
                                   cari(),
-                                  findstudent(),
-                                  tabcontrol(),
                                   headersection(),
                                   methode(controller),
                                   buttonsection()
@@ -169,50 +167,6 @@ class AcademicScreen extends StatelessWidget {
           Container(
             padding: EdgeInsets.only(top: 10, left: 40, right: 40),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "NPM",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  width: 900,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: AppColors.abukusuka,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(width: 0.1)),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "Nama Lengkap",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  width: 900,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: AppColors.abukusuka,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(width: 0.1)),
-                ),
-              ],
-            ),
-          ),
-          Container(
-            padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-            child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
@@ -264,55 +218,9 @@ class AcademicScreen extends StatelessWidget {
               ],
             ),
           ),
-          Container(
-            padding: EdgeInsets.only(top: 10, left: 40, right: 40),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Container(
-                  child: Text(
-                    "No. HP",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Container(
-                  width: 900,
-                  height: 40,
-                  decoration: BoxDecoration(
-                      color: AppColors.abukusuka,
-                      borderRadius: BorderRadius.circular(5),
-                      border: Border.all(width: 0.1)),
-                ),
-              ],
-            ),
-          ),
         ],
       ),
     );
-  }
-
-  Widget tabcontrol() {
-    return Container(
-        width: 500,
-        padding: EdgeInsets.only(top: 20),
-        margin: EdgeInsets.only(right: 650),
-        child: TabBar(
-            indicatorColor: AppColors.purplePiksi,
-            labelColor: Colors.black,
-            tabs: [
-              Container(
-                  child: Tab(
-                text: "Semester 1",
-              )),
-              Container(
-                  child: Tab(
-                text: "Semester 2",
-              )),
-              Container(
-                  child: Tab(
-                text: "Semester 3",
-              )),
-            ]));
   }
 
   Widget headersection() {
@@ -560,13 +468,13 @@ class AcademicScreen extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 150,
+                width: 160,
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
                   color: AppColors.purplePiksi,
                 ),
-                padding: EdgeInsets.only(left: 20, right: 33),
+                padding: EdgeInsets.only(left: 20, right: 20),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
@@ -576,7 +484,7 @@ class AcademicScreen extends StatelessWidget {
                       color: Colors.white,
                     ),
                     Text(
-                      "Cetak KHS",
+                      "Cetak Transkip",
                       style: TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.white),
                     )
