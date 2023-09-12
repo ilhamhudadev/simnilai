@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:standard_project/core/assets/app_assets.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/profile/controller/profile_controller.dart';
@@ -13,234 +14,163 @@ class ProfileScreen extends StatelessWidget {
       builder: (ProfileController controller) {
         return Scaffold(
           backgroundColor: AppColors.abukusuka,
-          body: SingleChildScrollView(
-              scrollDirection: Axis.vertical,
-              child: Container(
-                child: Stack(
-                  children: [
-                    Container(
-                      width: AppSize.screenWidth,
-                      height: 500,
-                      margin: EdgeInsets.only(
-                        top: 200,
-                      ),
-                      decoration: BoxDecoration(
-                        color: AppColors.abukusuka,
-                      ),
-                    ),
-                    ppkiri(contextprofil),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        ppkanan(contextprofil),
-                      ],
-                    ),
-                  ],
-                ),
-              )),
+          body: Container(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [profile(contextprofil)],
+            ),
+          ),
         );
       },
     );
   }
 
-  Widget ppkiri(context) {
-    return Container(
-      width: 350,
-      height: 400,
-      margin: EdgeInsets.only(top: 100, left: 20),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 10),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(10),
-                    topRight: Radius.circular(10)),
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text(
-                    "NPM",
-                    style: TextStyle(fontWeight: FontWeight.bold),
-                  ),
-                  Text("21200011")
-                ],
-              )),
-          Divider(),
-          SizedBox(height: 10),
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Nama", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("Alpin Agung nugroho")
-                ],
-              )),
-          Divider(),
-          SizedBox(height: 10),
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Kelas", style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("DDT-20/21")
-                ],
-              )),
-          Divider(),
-          SizedBox(height: 10),
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Jenis Kelamin",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("Laki-Laki")
-                ],
-              )),
-          Divider(),
-          SizedBox(height: 10),
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Jurusan",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("MIF/SI")
-                ],
-              )),
-          Divider(),
-          SizedBox(height: 10),
-          Container(
-              width: 400,
-              height: 30,
-              margin: EdgeInsets.only(left: 1, right: 1, top: 1),
-              padding: EdgeInsets.only(left: 20, right: 20),
-              decoration: BoxDecoration(
-                color: Colors.white,
-              ),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Text("Semester",
-                      style: TextStyle(fontWeight: FontWeight.bold)),
-                  Text("5")
-                ],
-              )),
-          Divider()
-        ],
-      ),
-    );
-  }
-
-  Container ppkanan(context) {
-    return Container(
-      width: 800,
-      height: 400,
-      margin: EdgeInsets.only(top: 100, right: 70),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 5,
-            blurRadius: 7,
-            offset: Offset(0, 3), // changes position of shadow
-          ),
-        ],
-      ),
-      child: Column(
-        children: [
-          atributkanan('Nama Lengkap', 'Alpin Agung Nugroho'),
-          Divider(),
-          atributkanan('Tempat Lahir', 'Bandung'),
-          Divider(),
-          atributkanan('Tanggal lahir', '18 September 2003'),
-          Divider(),
-          atributkanan('Agama', 'Islam'),
-          Divider(),
-          atributkanan('Alamat', 'Kp.ranca enong rt2 rw16'),
-          Divider(),
-          atributkanan('N0. Hp', '085798331352'),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
+  Widget profile(context) {
+    return Stack(
+      children: [
+        Container(
+          width: AppSize.screenWidth,
+          height: AppSize.screenHeight,
+          decoration: BoxDecoration(
+              color: AppColors.abukusuka,
+              borderRadius: BorderRadius.circular(20),
+              boxShadow: [
+                BoxShadow(
+                    color: Colors.grey, blurRadius: 5.0, offset: Offset(0, 1))
+              ]),
+          child: Column(
             children: [
-              Container(
-                padding: EdgeInsets.only(top: 10),
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    button(context, "Ubah password"),
-                  ],
-                ),
-              )
+              Stack(
+                children: [
+                  Container(
+                    height: 100,
+                    width: AppSize.screenWidth,
+                    decoration: BoxDecoration(
+                        // borderRadius: BorderRadius.only(
+                        //     topLeft: Radius.circular(20),
+                        //     topRight: Radius.circular(20)),
+                        color: AppColors.purplePiksi),
+                    child: Image.asset(
+                      AppAssets.gambar2,
+                      width: AppSize.screenWidth,
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  Stack(
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Center(
+                            child: Container(
+                              margin: EdgeInsets.only(
+                                  top: 50, left: 40, bottom: 20),
+                              width: 100,
+                              height: 100,
+                              decoration: BoxDecoration(
+                                image: DecorationImage(
+                                    image: NetworkImage(
+                                        'https://tse4.mm.bing.net/th?id=OIP.v2EJ6yhWzDCJ_v6qIXWlrgHaHa&pid=Api&P=0&h=180'),
+                                    fit: BoxFit.cover),
+                                borderRadius: BorderRadius.circular(100),
+                                boxShadow: [
+                                  BoxShadow(
+                                    color: Colors.grey.withOpacity(0.5),
+                                    spreadRadius: 2,
+                                    blurRadius: 4,
+                                    offset: Offset(
+                                        0, 3), // changes position of shadow
+                                  ),
+                                ],
+                              ),
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 500, bottom: 20),
+                            child: Text(
+                              "Selamat Datang Mahasiswa ",
+                              style: TextStyle(
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 30),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Column(
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(
+                              left: 30,
+                            ),
+                            width: 300,
+                            height: 250,
+                            decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(8),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 7,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: isitab(),
+                          ),
+                          Container(
+                            margin: EdgeInsets.only(left: 30, top: 15),
+                            child: button(context, 'Ubah Password'),
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        width: 10,
+                      ),
+                      Container(
+                        margin: EdgeInsets.only(
+                          left: 30,
+                        ),
+                        width: 500,
+                        height: 300,
+                        decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(8),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.grey.withOpacity(0.5),
+                              spreadRadius: 5,
+                              blurRadius: 7,
+                              offset:
+                                  Offset(0, 3), // changes position of shadow
+                            ),
+                          ],
+                        ),
+                        child: isitab2(),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
             ],
-          )
-        ],
-      ),
-    );
-  }
-
-  Widget table() {
-    return Container(
-        width: 500,
-        height: 40,
-        margin: EdgeInsets.only(right: 500, left: 10),
-        padding: EdgeInsets.only(left: 20),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          border: Border.all(width: 0, color: Colors.transparent),
+          ),
         ),
-        child:
-            Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
-          Text("Program Studi"),
-          Text("MIF"),
-        ]));
+      ],
+    );
   }
 
   Widget button(context, title) {
@@ -326,7 +256,7 @@ class ProfileScreen extends StatelessWidget {
                             children: [
                               Container(
                                 margin: EdgeInsets.only(right: 45, top: 20),
-                                child: buttonCount(context, "Konfirmasi"),
+                                decoration: BoxDecoration(color: Colors.purple),
                               ),
                             ],
                           )
@@ -340,9 +270,8 @@ class ProfileScreen extends StatelessWidget {
       },
       borderRadius: BorderRadius.circular(20),
       child: Container(
-          width: 150,
+          width: 300,
           height: 35,
-          margin: EdgeInsets.all(10),
           padding: EdgeInsets.only(left: 10, right: 10),
           decoration: BoxDecoration(
             color: AppColors.purplePiksi,
@@ -356,52 +285,55 @@ class ProfileScreen extends StatelessWidget {
           )),
     );
   }
-
-  Widget atributkanan(
-    isi1,
-    isi2,
-  ) {
-    return Container(
-        width: 800,
-        height: 30,
-        padding: EdgeInsets.only(left: 20, right: 20),
-        margin: EdgeInsets.only(top: 10),
-        decoration: BoxDecoration(color: Colors.white),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Text(
-              isi1,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            Text(
-              isi2,
-            )
-          ],
-        ));
-  }
 }
 
-Widget buttonCount(contaxt, isibtn) {
-  return InkWell(
-    onTap: () {
-      Get.back();
-    },
-    borderRadius: BorderRadius.circular(10),
-    child: Container(
-        width: 150,
-        height: 35,
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.only(right: 10),
-        decoration: BoxDecoration(
-          color: AppColors.purplePiksi,
-          borderRadius: BorderRadius.circular(8),
+Widget isitab() {
+  return Column(
+    children: [
+      atributtab('Username', '21200011', 35),
+      atributtab('Password', '********', 10),
+      atributtab('NPM', '21200011', 10),
+      atributtab('Program Studi', 'MIF/SI', 10),
+      atributtab('Kelas', 'DDT-20/21', 10),
+      atributtab('Semester', '4', 10),
+    ],
+  );
+}
+
+Widget isitab2() {
+  return Column(
+    children: [
+      atributtab('Nama Lengkap', 'Alpin Agung Nugroho', 35),
+      atributtab('Tempat Lahir', 'Bandung', 13),
+      atributtab('Tanggal Lahir', '18 September 2003', 13),
+      atributtab('Jenis Kelamin', 'Laki-Laki', 13),
+      atributtab('Agama', 'Islam', 13),
+      atributtab('Alamat', 'Kp.ranca enong rt2 rw16', 13),
+      atributtab('No.Handphone', '085798331352', 13),
+    ],
+  );
+}
+
+Widget atributtab(text1, text2, atas) {
+  return Row(
+    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    children: [
+      Container(
+        margin: EdgeInsets.only(top: atas, left: 25),
+        child: Text(
+          text1,
+          style: TextStyle(fontSize: 17, fontWeight: FontWeight.bold),
         ),
-        child: Center(
-          child: Text(
-            isibtn,
-            style: TextStyle(color: Colors.white),
+      ),
+      Container(
+        margin: EdgeInsets.only(top: atas, right: 30),
+        child: Text(
+          text2,
+          style: TextStyle(
+            fontSize: 17,
           ),
-        )),
+        ),
+      ),
+    ],
   );
 }
