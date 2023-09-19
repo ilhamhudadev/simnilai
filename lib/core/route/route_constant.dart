@@ -18,4 +18,5 @@ class RouteConstant {
   static const academicScreen = '/academicscreen';
   static const transkipScreen = '/transkipscreen';
   static const kelasScreen = '/kelasscreen';
+  static const sampleHitAPI = '/sampleHitAPI';
 }

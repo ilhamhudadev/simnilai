@@ -7,6 +7,7 @@ import 'package:standard_project/module/grade/teacher/screen/teacher_screen.dart
 import 'package:standard_project/module/home/screen/home_screen.dart';
 import 'package:standard_project/module/profile/screen/profile_screen.dart';
 import 'package:standard_project/module/profile/screen/view_user.dart';
+import 'package:standard_project/module/samplehitapi/screen/samplehitapi_screen.dart';
 import 'package:standard_project/module/study/screen/teacher.dart';
 import 'package:standard_project/module/grade/academic/screen/academic_screen.dart';
 import 'package:standard_project/module/grade/academic/screen/kelas.dart';
@@ -38,5 +39,6 @@ class AppRoute {
     GetPage(name: RouteConstant.academicScreen, page: () => AcademicScreen()),
     GetPage(name: RouteConstant.transkipScreen, page: () => TranskripScreen()),
     GetPage(name: RouteConstant.kelasScreen, page: () => KelasScreen()),
+    GetPage(name: RouteConstant.sampleHitAPI, page: () => SamplehitapiScreen()),
   ];
 }
