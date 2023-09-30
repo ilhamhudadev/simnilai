@@ -213,7 +213,7 @@ class ProfileScreen extends StatelessWidget {
                   width: 300,
                   height: 200,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: Row(
@@ -223,7 +223,6 @@ class ProfileScreen extends StatelessWidget {
                       Container(
                         width: 350,
                         height: 30,
-                        margin: EdgeInsets.only(top: 5),
                         child: TextField(
                           decoration: InputDecoration(
                             labelText: 'Password baru',
@@ -261,7 +260,8 @@ class ProfileScreen extends StatelessWidget {
                                 child: Container(
                                     width: 200,
                                     height: 35,
-                                    margin: EdgeInsets.only(top: 20),
+                                    margin: EdgeInsets.only(
+                                        top: 10, right: 5, left: 5, bottom: 10),
                                     decoration: BoxDecoration(
                                         borderRadius: BorderRadius.circular(8),
                                         color: AppColors.purplePiksi),
