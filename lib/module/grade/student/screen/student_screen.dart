@@ -1,18 +1,18 @@
-
- import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
+import 'package:standard_project/module/grade/student/controller/student_controller.dart';
 import 'package:standard_project/module/study/controller/study_controller.dart';
-import 'package:standard_project/module/study/data/model/study.dart';
+import 'package:standard_project/module/grade/student/data/model/student.dart';
 
 class StudentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSize().init(context);
-    return GetBuilder<StudyController>(
-      init: StudyController(),
-      builder: (StudyController controller) {
+    return GetBuilder<StudentController>(
+      init: StudentController(),
+      builder: (StudentController controller) {
         return MaterialApp(
             home: DefaultTabController(
                 length: 4,

@@ -89,10 +89,10 @@ class AuthScreen extends StatelessWidget {
                               Column(
                                 children: [
                                   Container(
-                                    margin:
-                                        EdgeInsets.only(top: 150, right: 240),
+                                    margin: EdgeInsets.only(
+                                        top: 150, right: 240, left: 10),
                                     child: Text(
-                                      'Signin mahasiswa',
+                                      'Sign in mahasiswa',
                                       style: TextStyle(
                                           fontWeight: FontWeight.bold,
                                           fontSize: 25),
@@ -155,7 +155,7 @@ class AuthScreen extends StatelessWidget {
       onTap: () {},
       borderRadius: BorderRadius.circular(20),
       child: Container(
-          width: 450,
+          width: 440,
           height: 35,
           margin: EdgeInsets.only(
             top: 15,

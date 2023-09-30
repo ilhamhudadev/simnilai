@@ -53,7 +53,6 @@ class SamplehitapiScreen extends StatelessWidget {
                     child: Text("GAK ADA DATA BROWW"),
                   );
                 }
-                ;
               }),
         );
       },
