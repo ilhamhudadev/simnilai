@@ -228,10 +228,10 @@ class _ScreensExample extends StatelessWidget {
             return TranskripScreen();
           //Transkrip NPM
           case 5:
-            return StudyScreen();
+            return StudentScreen();
           // Data Dosen
           case 6:
-            return ProfileScreen();
+            return Studyscreen();
           //  Profile
           default:
             return Text(

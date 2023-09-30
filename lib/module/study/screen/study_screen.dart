@@ -1,495 +1,601 @@
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
-import 'package:standard_project/module/study/controller/study_controller.dart';
-import 'package:standard_project/module/study/data/model/study.dart';
+import 'package:standard_project/module/study/data/model/matakuliah.dart';
+import '../controller/study_controller.dart';
 
-class StudyScreen extends StatelessWidget {
+class Studyscreen extends StatelessWidget {
   @override
-  Widget build(BuildContext context) {
-    AppSize().init(context);
+  Widget build(BuildContext contextmatkul) {
+    AppSize().init(contextmatkul);
     return GetBuilder<StudyController>(
-      init: StudyController(),
-      builder: (StudyController controller) {
-        return MaterialApp(
-            home: DefaultTabController(
-                length: 4,
-                child: Scaffold(
-                  body: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
-                    child: Container(
-                      color: AppColors.abukusuka,
-                      width: AppSize.screenWidth,
-                      child: Container(
-                          child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                right: 1070, left: 80, bottom: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Mahasiswa",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.purplePiksi),
+        init: StudyController(),
+        builder: (StudyController controller) {
+    return Scaffold(
+
+      body: Container(
+        color: AppColors.abukusuka,
+        child: Column
+        ( children: [
+         Container(
+          padding: EdgeInsets.only(top: 30,left: 110, bottom: 20,),
+          child: Row( children: [
+            Text('Master / Matakuliah',
+            style: TextStyle( fontSize: 15, color: AppColors.purplePiksi, ))
+
+          ],
+          ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              color: Colors.white ,
+              borderRadius: BorderRadius.circular(10)
+            ),
+            width: 1150, height: 450, 
+            child: Column(
+              children: [
+                Container( 
+                  padding: EdgeInsets.only(left: 20, top: 10, bottom: 10),
+                  
+                ),
+                Container(
+                  child: SizedBox(
+                    height: 20,
+                  ),
+
+                ),
+                
+
+                searcharea(),
+                headertabel(),
+                Container(
+                  height: 100,
+                   child: ListView.builder(
+                  scrollDirection: Axis.vertical,
+                  itemCount: controller.matkullist.length,
+                  itemBuilder: (context, index) {
+                  return baris(
+                  controller.matkullist[index], context, BorderSide(width: 1, color: Colors.black),);
+                },
+                ),
+                  ),
+                page(),
+               
+                
+                
+              ],
+            ),
+          )
+        ],  
+        )
+
+      )
+     ); 
+    });
+     }
+
+
+     Widget searcharea(){
+        return Container(
+          padding: EdgeInsets.only(top: 10, left:48),
+          child: Row (children: [
+                     Container(
+                                width: 250,
+                                height: 30,
+                                margin: EdgeInsets.only(top: 10, left: 15),
+                                child: TextField(
+                                  decoration: InputDecoration(
+                                      border: OutlineInputBorder(),
+                                      labelText: 'Search'),
                                 ),
-                                Text("/",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
-                                Text("Kartu Hasil Studi",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.purplePiksi))
-                              ],
-                            ),
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(top: 20, bottom: 20),
-                            margin: EdgeInsets.only(
-                                top: 20, left: 50, right: 50, bottom: 50),
-                            decoration: BoxDecoration(
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+                              Container(
+                                width: 60,
+                                height: 30,
+                                margin: EdgeInsets.only(top: 10),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: Colors.blue),
+                                child: Icon(
+                                  Icons.search,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 10,
+                              ),
+          ]),
+
+        );
+     }
+
+     Widget headertabel(){
+      return  Container(
+                  padding: EdgeInsets.only(top: 15),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 50,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1, color: Colors.black), 
+                        left: BorderSide(width: 1, color: Colors.black), 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('No', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1, color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('Kode', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 280,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black), 
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('Nama Mata Kuliah', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 300,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black) ,
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('Nama Dosen', style: TextStyle(fontWeight: FontWeight.bold,)),),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      decoration: BoxDecoration(
+                        color:AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('SKS', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('SMT', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 120,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('Prodi', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 65,
+                      decoration: BoxDecoration(
+                        color: AppColors.abukusuka,
+                        border: Border(top: BorderSide(width: 1,color: Colors.black),  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('Aksi', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    ),
+
+                  ],
+                  ),
+                );
+     }
+
+    
+
+  Widget baris(
+    listmatkul model, context, bawah
+  ){
+    return Container(
+      child: Row(
+
+                    mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      padding: EdgeInsets.all(10),
+                      width: 50,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border( 
+                        left: BorderSide(width: 1,color: Colors.black), 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: bawah )
+                      ),
+                      child: Center(child: Text('${model.No}')),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border( 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('${model.Kode}'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 280,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('${model.NamaMataKuliah}'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 300,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(  
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('${model.NamaDosen}'),),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border( 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Text('${model.SKS}'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 70,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border( 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('${model.SMT}'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 120,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border( 
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black))
+                      ),
+                      child: Text('${model.Prodi}'),
+                    ),
+                    Container(
+                      padding: EdgeInsets.all(15),
+                      width: 65,
+                      height: 50,
+                      decoration: BoxDecoration(
+                        border: Border(
+                        right: BorderSide(width: 1, color: Colors.black),
+                        bottom: BorderSide(width: 1, color: Colors.black) )
+                      ),
+                      child: Container(
+                        padding: EdgeInsets.only(right: 7),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            InkWell( 
+                              onTap: () {
+                                showDialog(context: context, 
+                                builder: (BuildContext){
+                                  return AlertDialog(
+                                    content: Container(
+                                      width: 500,
+                                      height: 300,
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(10),
+                                      ),
+                                      child: Column(children: [
+                                         Container(
+                  padding: EdgeInsets.only(right: 15),
+                  height: 50,
+                  color: AppColors.purplePiksi,
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Container(
+                        margin: EdgeInsets.only(left: 20),
+                        child: Text(
+                          "Data Dosen",
+                          style: TextStyle(
                               color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
+                              fontSize: 20,
+                              fontWeight: FontWeight.bold),
+                        ),
+                      ),
+                      InkWell(
+                          onTap: () {
+                            Get.back();
+                          },
+                          child: Icon(
+                            Icons.close,
+                            color: Colors.white,
+                          )),
+                    ],
+                  ),
+                ),
+                // Divider(),
+                Container(
+                  padding: EdgeInsets.only(top: 20, left:5, right: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Text('Nama Dosen', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    Text('Kontak Dosen', style: TextStyle(fontWeight: FontWeight.bold,))
+                  
+                  ],),
+                ),
+                Divider(),
+                Container(
+                  padding: EdgeInsets.only(top: 20, left:5, right: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Text('Seliwati', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    Text('081234567890', style: TextStyle(fontWeight: FontWeight.bold,))
+                  
+                  ],),
+                ),
+                Divider(),
+                Container(
+                  padding: EdgeInsets.only(top: 20, left:5, right: 5),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                    Text('Agus Alim', style: TextStyle(fontWeight: FontWeight.bold,)),
+                    Text('080987654321', style: TextStyle(fontWeight: FontWeight.bold,)),
+                  
+                  ],),
+                ),
+                Divider(),
+                Container(
+                                width: 60,
+                                height: 30,
+                                margin: EdgeInsets.only(top: 25, right: 450),
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(8),
+                                    color: AppColors.purplePiksi),
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    InkWell(
+                                    onTap: () {
+                                    Get.back();
+                                    },
+                                    child: Text('Ok', 
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold, 
+                                  color: Colors.white),),
+                                    )
+                                  ],
+                                ),
+                              ),
+                                      ],)
+                                    ),
+                                  );
+                                });
+                              },
+                              child: Row(
+                                children: [
+                                  Container(
+                              padding: EdgeInsets.all(1),
+                              decoration: BoxDecoration(
+                        border: Border(top: BorderSide(width: 1, color: Colors.deepPurple,),  
+                        right: BorderSide(width: 1, color: Colors.deepPurple,),
+                        bottom: BorderSide(width: 1, color: Colors.deepPurple,),
+                        left: BorderSide(width: 1, color: Colors.deepPurple,)
+                        )
+                        ),
+                             child: 
+                             Icon(Icons.remove_red_eye, size: 18, color: Colors.deepPurple,)
                             ),
-                            child: Column(
-                              children: [tabcontrol(), tabsection(controller)],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      )),
+                          ],
+                        ),
+
+                      ),
+                    ),
+
+                  
+                  ],
+                  ),
+           );
+     }  
+
+     Widget page() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Container(
+            margin: EdgeInsets.only(top: 40, left: 60),
+            child: Text('Showing 1 to 70 of entries'),
+          ),
+          Container(
+            child: Row(
+              children: [
+                Container(
+                  margin: EdgeInsets.only(top: 40,),
+                  width: 60,
+                  height: 25,
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
                     ),
                   ),
-                )));
-      },
-    );
-  }
-
-  Widget tabsection(controller) {
-    return Column(
-      children: [
-        headersection(),
-        methode(controller),
-        lastsection(),
-        buttonsection(),
-      ],
-    );
-  }
-
-  Widget methode(controller) {
-    return ConstrainedBox(
-      constraints: BoxConstraints(minHeight: 0),
-      child: ListView.builder(
-        shrinkWrap: true,
-        scrollDirection: Axis.vertical,
-        itemCount: controller.studylist.length,
-        itemBuilder: (context, index) {
-          return midlesection(controller.studylist[index], context);
-        },
-      ),
-    );
-  }
-
-  Widget tabcontrol() {
-    return Container(
-        width: 500,
-        margin: EdgeInsets.only(right: 650),
-        child: TabBar(
-            indicatorColor: AppColors.purplePiksi,
-            labelColor: Colors.black,
-            tabs: [
-              Container(
-                  child: Tab(
-                text: "Semester 1",
-              )),
-              Container(
-                  child: Tab(
-                text: "Semester 2",
-              )),
-              Container(
-                  child: Tab(
-                text: "Semester 3",
-              )),
-            ]));
-  }
-
-  Widget headersection() {
-    return Container(
-      margin: EdgeInsets.only(top: 20),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                border: Border(
-                    top: BorderSide(width: 0.4),
-                    left: BorderSide(width: 0.4),
-                    bottom: BorderSide(width: 0.4)),
-                color: AppColors.abukusuka),
-            child: Center(
-              child: Text(
-                "No",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-              ),
-            ),
-          ),
-          Container(
-            width: 200,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-                border: Border(
-                    top: BorderSide(width: 0.4),
-                    left: BorderSide(width: 0.4),
-                    bottom: BorderSide(width: 0.4)),
-                color: AppColors.abukusuka),
-            child: Center(
-              child: Text(
-                "Kode Matakuliah",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
+                  child: Center(
+                    child: Text('previous'),
+                  ),
                 ),
-              ),
-            ),
-          ),
-          Container(
-              width: 300,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(width: 0.4),
-                      left: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "Nama Matakuliah",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-          Container(
-              width: 100,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(width: 0.4),
-                      left: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "SKS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-          Container(
-              width: 100,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(width: 0.4),
-                      left: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "UTS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-          Container(
-              width: 100,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(width: 0.4),
-                      left: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "UAS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-          Container(
-              width: 150,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      top: BorderSide(width: 0.4),
-                      left: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "Nilai Huruf",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-          Container(
-              width: 150,
-              padding: EdgeInsets.all(10),
-              decoration: BoxDecoration(
-                  border: Border(
-                      left: BorderSide(width: 0.4),
-                      top: BorderSide(width: 0.4),
-                      bottom: BorderSide(width: 0.4),
-                      right: BorderSide(width: 0.5)),
-                  color: AppColors.abukusuka),
-              child: Center(
-                child: Text(
-                  "Nilai Angka",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-                ),
-              )),
-        ],
-      ),
-    );
-  }
-
-  Widget midlesection(Studymodel model, context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.No}"),
-          ),
-          Container(
-            width: 200,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.KodeMatakuliah}"),
-          ),
-          Container(
-            width: 300,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NamaMatakuliah}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.SKS}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.UTS}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.UAS}"),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NilaiHuruf}"),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-                right: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NilaiAngka}"),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget lastsection() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                  left: BorderSide(width: 0.5), bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 200,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 300,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text("Total SKS :",
-                textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(width: 0.5), left: BorderSide(width: 0.5)),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text(
-              "Total IPS :",
-              textAlign: TextAlign.right,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                  bottom: BorderSide(width: 0.5),
-                  left: BorderSide(width: 0.5),
-                  right: BorderSide(width: 0.5)),
-            ),
-            child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
-          ),
-        ],
-      ),
-    );
-  }
-
-  Widget buttonsection() {
-    return InkWell(
-        onTap: () {},
-        child: Row(
-          children: [
-            Container(
-              padding: EdgeInsets.only(left: 55, top: 15),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    width: 150,
-                    height: 40,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: AppColors.purplePiksi,
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.only(top: 40),
+                  decoration: BoxDecoration(
+                      border: Border(
+                        top: BorderSide(width: 0.5, color: Colors.black),
+                        left: BorderSide(width: 0.5, color: Colors.black),
+                        bottom: BorderSide(width: 0.5, color: Colors.black),
+                      ),
+                      color: AppColors.purplePiksi),
+                  child: Center(
+                    child: Text(
+                      '1',
+                      style: TextStyle(fontSize: 15, color: Colors.white),
                     ),
-                    padding: EdgeInsets.only(left: 20, right: 33),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Icon(
-                          Icons.print,
-                          size: 20,
-                          color: Colors.white,
-                        ),
-                        Text(
-                          "Cetak KHS",
-                          style: TextStyle(
-                              fontWeight: FontWeight.normal,
-                              color: Colors.white),
-                        )
-                      ],
+                  ),
+                ),
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.only(top: 40),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
                     ),
-                  )
-                ],
-              ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '2',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.only(top: 40,),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '3',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.only(top: 40),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '4',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 25,
+                  height: 25,
+                  margin: EdgeInsets.only(top: 40),
+                  decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      '...',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                ),
+                Container(
+                  width: 40,
+                  height: 25,
+                  margin: EdgeInsets.only(right: 65, top: 40),
+                  decoration: BoxDecoration(
+                    border: Border(
+                        top: BorderSide(width: 0.5, color: Colors.black),
+                        left: BorderSide(width: 0.5, color: Colors.black),
+                        bottom: BorderSide(width: 0.5, color: Colors.black),
+                        right: BorderSide(width: 0.5, color: Colors.black)),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'next',
+                      style: TextStyle(
+                        fontSize: 15,
+                      ),
+                    ),
+                  ),
+                )
+              ],
             ),
-          ],
-        ));
-  }
-}
+          )
+        ],
+      ),
+    );
+  }        
+     
+    }
