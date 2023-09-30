@@ -10,6 +10,8 @@ class StudentScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSize().init(context);
+    final ScrollController _horizontal = ScrollController(),
+        _vertical = ScrollController();
     return GetBuilder<StudentController>(
       init: StudentController(),
       builder: (StudentController controller) {
@@ -18,7 +20,11 @@ class StudentScreen extends StatelessWidget {
                 length: 4,
                 child: Scaffold(
                   body: SingleChildScrollView(
-                    scrollDirection: Axis.vertical,
+                  controller: _vertical,
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    controller: _horizontal,
+                    scrollDirection: Axis.horizontal,
                     child: Container(
                       color: AppColors.abukusuka,
                       width: AppSize.screenWidth,
@@ -69,7 +75,7 @@ class StudentScreen extends StatelessWidget {
                       )),
                     ),
                   ),
-                )));
+                ))));
       },
     );
   }

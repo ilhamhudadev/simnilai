@@ -7,13 +7,20 @@ import 'package:standard_project/module/grade/teacher/data/model/teacherModel.da
 class TeacherScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final ScrollController _horizontal = ScrollController(),
+        _vertical = ScrollController();
     return GetBuilder<TeacherController>(
       init: TeacherController(),
       builder: (TeacherController controller) {
         return Scaffold(
             backgroundColor: AppColors.abukusuka,
             body: SingleChildScrollView(
-              child: Container(
+                  controller: _vertical,
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    controller: _horizontal,
+                    scrollDirection: Axis.horizontal,
+                    child: Container(
                   child: Column(
                 children: [
                   Row(
@@ -110,7 +117,7 @@ class TeacherScreen extends StatelessWidget {
                   ]),
                 ],
               )),
-            ));
+            )));
       },
     );
   }
