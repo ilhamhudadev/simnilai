@@ -10,6 +10,8 @@ class KelasScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     AppSize().init(context);
+    final ScrollController _horizontal = ScrollController(),
+        _vertical = ScrollController();
     return GetBuilder<AcademicController>(
       init: AcademicController(),
       builder: (AcademicController controller) {
@@ -18,6 +20,11 @@ class KelasScreen extends StatelessWidget {
                 length: 4,
                 child: Scaffold(
                   body: SingleChildScrollView(
+                  controller: _vertical,
+                  scrollDirection: Axis.vertical,
+                  child: SingleChildScrollView(
+                    controller: _horizontal,
+                    scrollDirection: Axis.horizontal,
                     child: Container(
                       color: AppColors.abukusuka,
                       width: AppSize.screenWidth,
@@ -85,7 +92,7 @@ class KelasScreen extends StatelessWidget {
                       )),
                     ),
                   ),
-                )));
+                ))));
       },
     );
   }
