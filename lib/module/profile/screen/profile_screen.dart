@@ -254,10 +254,24 @@ class ProfileScreen extends StatelessWidget {
                           Row(
                             mainAxisAlignment: MainAxisAlignment.start,
                             children: [
-                              Container(
-                                margin: EdgeInsets.only(right: 45, top: 20),
-                                decoration: BoxDecoration(color: Colors.purple),
-                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.back();
+                                },
+                                child: Container(
+                                    width: 200,
+                                    height: 35,
+                                    margin: EdgeInsets.only(top: 20),
+                                    decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(8),
+                                        color: AppColors.purplePiksi),
+                                    child: Center(
+                                      child: Text(
+                                        title,
+                                        style: TextStyle(color: Colors.white),
+                                      ),
+                                    )),
+                              )
                             ],
                           )
                         ],
