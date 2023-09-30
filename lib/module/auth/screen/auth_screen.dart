@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:standard_project/core/assets/app_assets.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/auth/controller/auth_controller.dart';
@@ -30,13 +31,7 @@ class AuthScreen extends StatelessWidget {
                                   width: 130,
                                   height: 130,
                                   margin: EdgeInsets.only(top: 200, left: 70),
-                                  decoration: BoxDecoration(
-                                    image: DecorationImage(
-                                        image: NetworkImage(
-                                            'https://tse4.mm.bing.net/th?id=OIP.v2EJ6yhWzDCJ_v6qIXWlrgHaHa&pid=Api&P=0&h=180'),
-                                        fit: BoxFit.cover),
-                                    borderRadius: BorderRadius.circular(100),
-                                  ),
+                                  child: Image.asset(AppAssets.logoPiksi),
                                 ),
                                 Container(
                                   width: 3,

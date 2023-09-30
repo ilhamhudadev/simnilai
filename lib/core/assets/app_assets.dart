@@ -5,4 +5,6 @@ class AppAssets {
   static const image = 'img/'; // JPG or PNG
   static const bgnew = '${image}bgnew.png';
   static const logoPiksi = '${image}logo_piksi.png';
+  static const gambar = '${image}bg.png';
+  static const gambar2 = '${image}picture.png';
 }
