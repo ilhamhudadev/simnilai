@@ -589,7 +589,7 @@ class TranskripScreen extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Container(
-          padding: EdgeInsets.only(top: 20, left: 40),
+          padding: EdgeInsets.only(top: 20, left: 55),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
