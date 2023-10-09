@@ -462,7 +462,7 @@ class KelasScreen extends StatelessWidget {
     return InkWell(
         onTap: () {},
         child: Container(
-          padding: EdgeInsets.only(top: 20, left: 80),
+          padding: EdgeInsets.only(top: 20, left: 60),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
