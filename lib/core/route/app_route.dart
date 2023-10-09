@@ -1,6 +1,9 @@
 import 'package:get/get.dart';
 import 'package:standard_project/core/route/route_constant.dart';
+import 'package:standard_project/module/apibaru/screen/apibaru_screen.dart';
+import 'package:standard_project/module/apilist/screen/samplelistapi.dart';
 import 'package:standard_project/module/auth/screen/auth_screen.dart';
+import 'package:standard_project/module/grade/student/screen/student_screen.dart';
 // import 'package:standard_project/module/auth/screen/loginScreen.dart';
 // import 'package:standard_project/module/grade/academic/screen/viewnilaiacademic.dart';
 
@@ -45,5 +48,8 @@ class AppRoute {
     // GetPage(
     //     name: RouteConstant.viewnilaiacademic, page: () => viewnilaiacademic()),
     GetPage(name: RouteConstant.sampleHitAPI, page: () => SamplehitapiScreen()),
+    GetPage(name: RouteConstant.ApiScreen  , page: () =>  ApiScreen ()),
+    GetPage(name: RouteConstant.ListapiScreen , page: () =>  ListapiScreen ()),
+     GetPage(name: RouteConstant.studentScreen, page: () => StudentScreen()),
   ];
 }

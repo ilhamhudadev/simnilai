@@ -35,7 +35,7 @@ class TranskripScreen extends StatelessWidget {
                           ),
                           Container(
                             padding: EdgeInsets.only(
-                                right: 1120, left: 60, bottom: 15),
+                                right: 1030, left: 60, bottom: 10),
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -59,9 +59,31 @@ class TranskripScreen extends StatelessWidget {
                             ),
                           ),
                           Container(
+                             width: 950,
+                             height: 80,
+                             padding: EdgeInsets.only(bottom: 20,top: 10),
+                            margin: EdgeInsets.only(
+                                top: 10, right: 210, bottom: 5),                                 decoration: BoxDecoration(
+                              color: Colors.white,
+                              borderRadius: BorderRadius.circular(10),
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Colors.grey.withOpacity(0.5),
+                                  spreadRadius: 5,
+                                  blurRadius: 20,
+                                  offset: Offset(
+                                      0, 3), // changes position of shadow
+                                ),
+                              ],
+                            ),
+                            child: 
+                            cari(),
+                          ),
+                          Container(
+                            width: 950,
                             padding: EdgeInsets.only(top: 20, bottom: 20),
                             margin: EdgeInsets.only(
-                                top: 10, left: 50, right: 50, bottom: 50),
+                                top: 20, right: 210, bottom: 50),
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(10),
@@ -78,9 +100,9 @@ class TranskripScreen extends StatelessWidget {
                             child: Container(
                               child: Column(
                                 children: [
-                                  cari(),
                                   headersection(),
                                   methode(controller),
+                                  lastsection(),
                                   buttonsection()
                                 ],
                               ),
@@ -111,7 +133,7 @@ class TranskripScreen extends StatelessWidget {
 
   Widget cari() {
     return Container(
-      margin: EdgeInsets.only(left: 20),
+      margin: EdgeInsets.only(left: 390),
       padding: EdgeInsets.only(top: 10, left: 20),
       child: Row(children: [
         Container(
@@ -121,17 +143,21 @@ class TranskripScreen extends StatelessWidget {
           child: TextField(
             decoration: InputDecoration(
                 border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(0)),
-                labelText: 'Search'),
+                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
+                labelText: 'Search',labelStyle: TextStyle(fontSize: 12)),
           ),
         ),
+        SizedBox(width: 10,),
         Container(
-          width: 70,
+          width: 80,
           height: 30,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(30),
-                  bottomRight: Radius.circular(30)),
+                  topRight: Radius.circular(10),
+                  bottomRight: Radius.circular(10),
+                  topLeft: Radius.circular(10),
+                  bottomLeft: Radius.circular(10)),
+                  
               color: Colors.blue),
           child: Icon(
             Icons.search,
@@ -141,10 +167,10 @@ class TranskripScreen extends StatelessWidget {
         Container(
           width: 100,
           height: 30,
-          margin: EdgeInsets.only(left: 730),
+          margin: EdgeInsets.only(left: 10),
           decoration: BoxDecoration(
               color: Colors.deepPurple,
-              borderRadius: BorderRadius.circular(30)),
+              borderRadius: BorderRadius.circular(10)),
           padding: EdgeInsets.only(left: 18, right: 18),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -155,8 +181,8 @@ class TranskripScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               Text(
-                "search",
-                style: TextStyle(color: Colors.white),
+                "Refresh",
+                style: TextStyle(color: Colors.white,fontSize: 12),
               )
             ],
           ),
@@ -237,7 +263,7 @@ class TranskripScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 50,
+            width: 40,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border(
@@ -247,13 +273,13 @@ class TranskripScreen extends StatelessWidget {
                 color: AppColors.abukusuka),
             child: Center(
               child: Text(
-                "No",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                "No" ,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
             ),
           ),
           Container(
-            width: 200,
+            width: 180,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border(
@@ -265,14 +291,14 @@ class TranskripScreen extends StatelessWidget {
               child: Text(
                 "Kode Matakuliah",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
             ),
           ),
           Container(
-              width: 340,
+              width: 300,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -283,11 +309,11 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nama Matakuliah",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -298,11 +324,11 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "SKS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -313,11 +339,11 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "UTS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -328,11 +354,11 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "UAS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 150,
+              width: 80,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -343,11 +369,11 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nilai Huruf",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 150,
+              width: 90,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -359,7 +385,7 @@ class TranskripScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nilai Angka",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
         ],
@@ -373,6 +399,39 @@ class TranskripScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
+            width: 40,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(width: 0.5),
+                bottom: BorderSide(width: 0.5),
+              ),
+            ),
+            child: Center(child: Text("${model.No}",style: TextStyle(fontSize: 12),)),
+          ),
+          Container(
+            width: 180,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(width: 0.5),
+                bottom: BorderSide(width: 0.5),
+              ),
+            ),
+            child: Center(child: Text("${model.KodeMatakuliah}",style: TextStyle(fontSize: 12),)),
+          ),
+          Container(
+            width: 300,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(width: 0.5),
+                bottom: BorderSide(width: 0.5),
+              ),
+            ),
+            child: Text("${model.NamaMatakuliah}",style: TextStyle(fontSize: 12),),
+          ),
+          Container(
             width: 50,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
@@ -381,10 +440,10 @@ class TranskripScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Center(child: Text("${model.No}")),
+            child: Center(child: Text("${model.SKS}",style: TextStyle(fontSize: 12),)),
           ),
           Container(
-            width: 200,
+            width: 50,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -392,10 +451,10 @@ class TranskripScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Center(child: Text("${model.KodeMatakuliah}")),
+            child: Center(child: Text("${model.UTS}",style: TextStyle(fontSize: 12),)),
           ),
           Container(
-            width: 340,
+            width: 50,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -403,10 +462,10 @@ class TranskripScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Center(child: Text("${model.NamaMatakuliah}")),
+            child: Center(child: Text("${model.UAS}",style: TextStyle(fontSize: 12),)),
           ),
           Container(
-            width: 100,
+            width: 80,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -414,43 +473,10 @@ class TranskripScreen extends StatelessWidget {
                 bottom: BorderSide(width: 0.5),
               ),
             ),
-            child: Center(child: Text("${model.SKS}")),
+            child: Center(child: Text("${model.NilaiHuruf}",style: TextStyle(fontSize: 12),)),
           ),
           Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Center(child: Text("${model.UTS}")),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Center(child: Text("${model.UAS}")),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Center(child: Text("${model.NilaiHuruf}")),
-          ),
-          Container(
-            width: 150,
+            width: 90,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -459,7 +485,100 @@ class TranskripScreen extends StatelessWidget {
                 right: BorderSide(width: 0.5),
               ),
             ),
-            child: Center(child: Text("${model.NilaiAngka}")),
+            child: Center(child: Text("${model.NilaiAngka}",style: TextStyle(fontSize: 12),)),
+          ),
+        ],
+      ),
+    );
+  }
+   Widget lastsection() {
+    return Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Container(
+            width: 40,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                  left: BorderSide(width: 0.5), bottom: BorderSide(width: 0.5)),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 180,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(width: 0.5)),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 300,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(width: 0.5)),
+            ),
+            child: Text("Total SKS :",
+                textAlign: TextAlign.right,
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 50,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                left: BorderSide(width: 0.5),
+                bottom: BorderSide(width: 0.5),
+              ),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 50,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 0.5), left: BorderSide(width: 0.5)),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 40,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(width: 0.5)),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+          ),
+          Container(
+            width: 90,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(bottom: BorderSide(width: 0.5)),
+            ),
+            child: Text(
+              "Total IPK :",
+              textAlign: TextAlign.right,
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+            ),
+          ),
+          Container(
+            width: 90,
+            padding: EdgeInsets.all(10),
+            decoration: BoxDecoration(
+              border: Border(
+                  bottom: BorderSide(width: 0.5),
+                  left: BorderSide(width: 0.5),
+                  right: BorderSide(width: 0.5)),
+            ),
+            child: Text("",
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
