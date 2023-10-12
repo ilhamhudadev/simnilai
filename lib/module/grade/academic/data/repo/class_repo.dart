@@ -2,17 +2,19 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart' as DioPlugin;
+import 'package:standard_project/module/apibaru/data/model/model_api.dart';
+import 'package:standard_project/module/grade/academic/data/model/classmodel.dart';
 
-import 'package:standard_project/module/grade/student/data/model/student_model.dart';
 
-class StudenttRepo {
+
+class classapiRepo {
   Future<void> repoFunc() async {
     try {} catch (e) {
       rethrow;
     }
   }
 
-  Future<List<ApiStudentModel>> fetchstudentdata() async {
+  Future<List<ApiclassModel>> fetchclassData() async {
     debugPrint("Print 1");
     try {
       // DioPlugin.Response response = await ApiClient().postData(
@@ -25,8 +27,8 @@ class StudenttRepo {
 
       debugPrint("Print 2  ${response.data}");
 
-      List<ApiStudentModel> data =
-          studentfromjson(response.data);
+      List<ApiclassModel> data =
+          classfromjson(response.data);
 
       debugPrint("Print 3 ");
 

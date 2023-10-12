@@ -3,8 +3,9 @@ import 'package:get/get.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/grade/student/controller/student_controller.dart';
-import 'package:standard_project/module/study/controller/study_controller.dart';
+import 'package:standard_project/module/grade/student/controller/studentapi_controller.dart';
 import 'package:standard_project/module/grade/student/data/model/student.dart';
+import 'package:standard_project/module/grade/student/data/model/student_model.dart';
 
 class StudentScreen extends StatelessWidget {
   @override
@@ -12,82 +13,274 @@ class StudentScreen extends StatelessWidget {
     AppSize().init(context);
     final ScrollController _horizontal = ScrollController(),
         _vertical = ScrollController();
-    return GetBuilder<StudentController>(
-      init: StudentController(),
-      builder: (StudentController controller) {
-        return MaterialApp(
-            home: DefaultTabController(
-                length: 4,
-                child: Scaffold(
-                  body: SingleChildScrollView(
-                  controller: _vertical,
-                  scrollDirection: Axis.vertical,
-                  child: SingleChildScrollView(
-                    controller: _horizontal,
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                      color: AppColors.abukusuka,
-                      width: AppSize.screenWidth,
-                      child: Container(
-                          child: Column(
-                        children: [
-                          SizedBox(
-                            height: 20,
-                          ),
-                          Container(
-                            padding: EdgeInsets.only(
-                                right: 1070, left: 80, bottom: 15),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                              children: [
-                                Text(
-                                  "Mahasiswa",
-                                  style: TextStyle(
-                                      fontSize: 15,
-                                      fontWeight: FontWeight.bold,
-                                      color: AppColors.purplePiksi),
-                                ),
-                                Text("/",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold)),
-                                Text("Kartu Hasil Studi",
-                                    style: TextStyle(
-                                        fontSize: 15,
-                                        fontWeight: FontWeight.bold,
-                                        color: AppColors.purplePiksi))
-                              ],
+    return GetBuilder<ApiStudentController>(
+      init: ApiStudentController(),
+      builder: (ApiStudentController controller) {
+        return Scaffold(
+          body: FutureBuilder<List<ApiStudentModel>>(
+            future: controller.futurelistData(),
+            builder: (context, Response) {
+              if (Response.hasData) {
+                var value = Response.data;
+                return MaterialApp(
+                    home: DefaultTabController(
+                        length: 4,  
+                        child: Scaffold(
+                            body: SingleChildScrollView(
+                          controller: _vertical,
+                          scrollDirection: Axis.vertical,
+                          child: SingleChildScrollView(
+                            controller: _horizontal,
+                            scrollDirection: Axis.horizontal,
+                            child: Container(
+                              color: AppColors.abukusuka,
+                              width: AppSize.screenWidth,
+                              child: Container(
+                                  child: Column( 
+                                children: [
+                                  SizedBox(
+                                    height: 20,
+                                  ),
+                                  Container(
+                                    padding: EdgeInsets.only(
+                                        right: 1000, left: 60, bottom: 2),
+                                    child: Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          "Mahasiswa",
+                                          style: TextStyle(
+                                              fontSize: 15,
+                                              fontWeight: FontWeight.bold,
+                                              color: AppColors.purplePiksi),
+                                        ),
+                                        Text("/",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold)),
+                                        Text("Kartu Hasil Studi",
+                                            style: TextStyle(
+                                                fontSize: 15,
+                                                fontWeight: FontWeight.bold,
+                                                color: AppColors.purplePiksi))
+                                      ],
+                                    ),
+                                  ),
+                                  Container(
+                                    width: 950,
+                                    padding:
+                                        EdgeInsets.only(top: 20, bottom: 20),
+                                    margin: EdgeInsets.only(
+                                        top: 20, right: 210, bottom: 50),
+                                    decoration: BoxDecoration(
+                                      color: Colors.white,
+                                      borderRadius: BorderRadius.circular(10),
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Colors.grey.withOpacity(0.5),
+                                          spreadRadius: 5,
+                                          blurRadius: 20,
+                                          offset: Offset(0,
+                                              3), // changes position of shadow
+                                        ),
+                                      ],
+                                    ),
+                                    child: Column(
+                                      children: [
+                                        tabcontrol(),
+                                        headersection(),
+                                        ListView.builder(
+                                            scrollDirection: Axis.vertical,
+                                            controller:controller.scrollController,
+                                            shrinkWrap: true,
+                                            itemCount: value!.length,
+                                            itemBuilder: ((context, index) {
+                                              return Container(
+                                                child: Row(
+                                                  mainAxisAlignment:
+                                                      MainAxisAlignment.center,
+                                                  children: [
+                                                    Container(
+                                                      width: 40,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 180,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 300,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      ),
+                                                    ),
+                                                    Container(
+                                                      width: 50,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 50,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 50,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 80,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 90,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                          right: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].id}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                  ],
+                                                ),
+                                              );
+                                            })),
+                                        lastsection(),
+                                        buttonsection(),
+                                      ],
+                                    ),
+                                  ),
+                                ],
+                              )
+                              ),
                             ),
                           ),
-                          Container(
-                            padding: EdgeInsets.only(top: 20, bottom: 20),
-                            margin: EdgeInsets.only(
-                                top: 20, left: 50, right: 50, bottom: 50),
-                            decoration: BoxDecoration(
-                              color: Colors.white,
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: Column(
-                              children: [tabcontrol(), tabsection(controller)],
-                            ),
-                          ),
-                        ],
-                      )),
-                    ),
-                  ),
-                ))));
+                        )
+                        )
+                        )
+                        );
+              } else {
+                return Center(
+                  child: Text("data tidak ada"),
+                );
+              }
+            },
+          ),
+        );
       },
-    );
-  }
-
-  Widget tabsection(controller) {
-    return Column(
-      children: [
-        headersection(),
-        methode(controller),
-        lastsection(),
-        buttonsection(),
-      ],
     );
   }
 
@@ -97,10 +290,8 @@ class StudentScreen extends StatelessWidget {
       child: ListView.builder(
         shrinkWrap: true,
         scrollDirection: Axis.vertical,
-        itemCount: controller.studylist.length,
-        itemBuilder: (context, index) {
-          return midlesection(controller.studylist[index], context);
-        },
+        controller: controller.scrollController,
+        itemBuilder: (context, index) {},
       ),
     );
   }
@@ -108,7 +299,7 @@ class StudentScreen extends StatelessWidget {
   Widget tabcontrol() {
     return Container(
         width: 500,
-        margin: EdgeInsets.only(right: 650),
+        margin: EdgeInsets.only(right: 340),
         child: TabBar(
             indicatorColor: AppColors.purplePiksi,
             labelColor: Colors.black,
@@ -135,7 +326,7 @@ class StudentScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 50,
+            width: 40,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border(
@@ -146,12 +337,12 @@ class StudentScreen extends StatelessWidget {
             child: Center(
               child: Text(
                 "No",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
               ),
             ),
           ),
           Container(
-            width: 200,
+            width: 180,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
                 border: Border(
@@ -163,7 +354,7 @@ class StudentScreen extends StatelessWidget {
               child: Text(
                 "Kode Matakuliah",
                 style: TextStyle(
-                  fontSize: 15,
+                  fontSize: 12,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -181,11 +372,11 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nama Matakuliah",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -196,11 +387,11 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "SKS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -211,11 +402,11 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "UTS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 100,
+              width: 50,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -226,11 +417,11 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "UAS",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 150,
+              width: 80,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -241,11 +432,11 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nilai Huruf",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
           Container(
-              width: 150,
+              width: 90,
               padding: EdgeInsets.all(10),
               decoration: BoxDecoration(
                   border: Border(
@@ -257,108 +448,9 @@ class StudentScreen extends StatelessWidget {
               child: Center(
                 child: Text(
                   "Nilai Angka",
-                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
                 ),
               )),
-        ],
-      ),
-    );
-  }
-
-  Widget midlesection(Studymodel model, context) {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Container(
-            width: 50,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.No}"),
-          ),
-          Container(
-            width: 200,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.KodeMatakuliah}"),
-          ),
-          Container(
-            width: 300,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NamaMatakuliah}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.SKS}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.UTS}"),
-          ),
-          Container(
-            width: 100,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.UAS}"),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NilaiHuruf}"),
-          ),
-          Container(
-            width: 150,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(
-                left: BorderSide(width: 0.5),
-                bottom: BorderSide(width: 0.5),
-                right: BorderSide(width: 0.5),
-              ),
-            ),
-            child: Text("${model.NilaiAngka}"),
-          ),
         ],
       ),
     );
@@ -370,23 +462,23 @@ class StudentScreen extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Container(
-            width: 50,
+            width: 40,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
                   left: BorderSide(width: 0.5), bottom: BorderSide(width: 0.5)),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
-            width: 200,
+            width: 180,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(width: 0.5)),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
             width: 300,
@@ -396,10 +488,10 @@ class StudentScreen extends StatelessWidget {
             ),
             child: Text("Total SKS :",
                 textAlign: TextAlign.right,
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
-            width: 100,
+            width: 50,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -408,29 +500,29 @@ class StudentScreen extends StatelessWidget {
               ),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
-            width: 100,
+            width: 50,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
                   bottom: BorderSide(width: 0.5), left: BorderSide(width: 0.5)),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
-            width: 100,
+            width: 40,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(width: 0.5)),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
           Container(
-            width: 150,
+            width: 90,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(width: 0.5)),
@@ -438,11 +530,11 @@ class StudentScreen extends StatelessWidget {
             child: Text(
               "Total IPS :",
               textAlign: TextAlign.right,
-              style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
             ),
           ),
           Container(
-            width: 150,
+            width: 90,
             padding: EdgeInsets.all(10),
             decoration: BoxDecoration(
               border: Border(
@@ -451,7 +543,7 @@ class StudentScreen extends StatelessWidget {
                   right: BorderSide(width: 0.5)),
             ),
             child: Text("",
-                style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+                style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
         ],
       ),
