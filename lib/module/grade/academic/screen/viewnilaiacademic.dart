@@ -2,15 +2,16 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/module/grade/academic/controller/academic_controller.dart';
+import 'package:standard_project/module/grade/academic/controller/class_controller.dart';
 
 class viewnilaiacademic extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final ScrollController _horizontal = ScrollController(),
         _vertical = ScrollController();
-    return GetBuilder<AcademicController>(
-      init: AcademicController(),
-      builder: (AcademicController controller) {
+    return GetBuilder<classapiController>(
+      init: classapiController(),
+      builder: (classapiController controller) {
         return Scaffold(
             backgroundColor: AppColors.abukusuka,
             body: SingleChildScrollView(
