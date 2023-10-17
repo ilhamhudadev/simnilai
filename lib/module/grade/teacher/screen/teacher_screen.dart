@@ -15,109 +15,117 @@ class TeacherScreen extends StatelessWidget {
         return Scaffold(
             backgroundColor: AppColors.abukusuka,
             body: SingleChildScrollView(
-                  controller: _vertical,
-                  scrollDirection: Axis.vertical,
-                  child: SingleChildScrollView(
-                    controller: _horizontal,
-                    scrollDirection: Axis.horizontal,
-                    child: Container(
-                  child: Column(
-                children: [
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                controller: _vertical,
+                scrollDirection: Axis.vertical,
+                child: SingleChildScrollView(
+                  controller: _horizontal,
+                  scrollDirection: Axis.horizontal,
+                  child: Container(
+                      child: Column(
                     children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 100, right: 400),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Container(
-                              margin: EdgeInsets.only(
-                                right: 120,
-                                top: 40,
-                              ),
-                              child: Text(
-                                'Dosen / Import nilai',
-                                style:
-                                    TextStyle(fontSize: 18, color: Colors.blue),
-                              ),
-                            )
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  Row(children: [
-                    Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Color.fromARGB(255, 255, 255, 255),
-                        ),
-                        margin: EdgeInsets.only(top: 20, left: 60),
-                        width: 1250,
-  
-                        child: Column(
-                          children: [
-                            Row(
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: [
+                          Container(
+                            margin: EdgeInsets.only(right: 980),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                  Container(
-                                    width: 350,
-                                    height: 30,
-                                    margin: EdgeInsets.only(top: 30, left: 50),
-                                    child: TextField(
-                                      decoration: InputDecoration(
-                                          border: OutlineInputBorder(),
-                                          labelText: 'Search'),
-                                    ),
+                                Container(
+                                  margin: EdgeInsets.only(
+                                    right: 120,
+                                    top: 40,
                                   ),
-                                  SizedBox(
-                                    width: 10,
+                                  child: Text(
+                                    'Dosen / Import nilai',
+                                    style: TextStyle(
+                                        fontSize: 18, color: Colors.purple),
                                   ),
-                                  Container(
-                                    width: 60,
-                                    height: 30,
-                                    margin: EdgeInsets.only(top: 30),
-                                    decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        color: Colors.blue),
-                                    child: Icon(
-                                      Icons.search,
-                                      color: Colors.white,
-                                    ),
-                                  ),
-                                  SizedBox(
-                                    width: 10,
-                                  ),
-                                buttonimport(context)
+                                )
                               ],
                             ),
-            
-                            //kolom ke 1
-                            headT(),
-                            //kolom ke 2
-                            Container(
-                              constraints: BoxConstraints(minHeight: 0),
-                              child: ListView.builder(shrinkWrap: true,
-                                itemCount: controller.Lteach.length,
-                                scrollDirection: Axis.vertical,
-                                itemBuilder: (BuildContext context,int index){
-                                  return Center(
-                                    child: isiTbl(controller.Lteach[index], context),
-                                  );
-                                }),
+                          ),
+                        ],
+                      ),
+                      Row(children: [
+                        Container(
+                            width: 1100,
+                            padding: EdgeInsets.only(top: 20, bottom: 20),
+                            margin: EdgeInsets.only(
+                                top: 20, right: 210, bottom: 50, left: 50),
+                            decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(10),
+                              color: Color.fromARGB(255, 255, 255, 255),
                             ),
+                            child: Column(
+                              children: [
+                                Row(
+                                  children: [
+                                    Container(
+                                      width: 350,
+                                      height: 30,
+                                      margin:
+                                          EdgeInsets.only(top: 30, left: 50),
+                                      child: TextField(
+                                        decoration: InputDecoration(
+                                            border: OutlineInputBorder(),
+                                            labelText: 'Search',
+                                            labelStyle:
+                                                TextStyle(fontSize: 12)),
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    Container(
+                                      width: 60,
+                                      height: 30,
+                                      margin: EdgeInsets.only(top: 30),
+                                      decoration: BoxDecoration(
+                                          borderRadius:
+                                              BorderRadius.circular(8),
+                                          color: Colors.blue),
+                                      child: Icon(
+                                        Icons.search,
+                                        color: Colors.white,
+                                      ),
+                                    ),
+                                    SizedBox(
+                                      width: 10,
+                                    ),
+                                    buttonimport(context)
+                                  ],
+                                ),
+
+                                //kolom ke 1
+                                headT(),
+                                //kolom ke 2
+                                Container(
+                                  constraints: BoxConstraints(minHeight: 0),
+                                  child: ListView.builder(
+                                      shrinkWrap: true,
+                                      itemCount: controller.Lteach.length,
+                                      scrollDirection: Axis.vertical,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return Center(
+                                          child: isiTbl(
+                                              controller.Lteach[index],
+                                              context),
+                                        );
+                                      }),
+                                ),
                                 Container(
                                   margin: EdgeInsets.only(top: 175),
                                   child: pagination(),
-                                  ),
-                            
-                          ],
-                        )),
-                  ]),
-                ],
-              )),
-            )));
+                                ),
+                              ],
+                            )),
+                      ]),
+                    ],
+                  )),
+                )));
       },
     );
   }
@@ -138,7 +146,9 @@ class TeacherScreen extends StatelessWidget {
                       left: BorderSide(width: 1),
                       bottom: BorderSide(width: 1))),
               child: Center(
-                child: Text("NPM"),
+                child: Text("NPM",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
@@ -151,20 +161,9 @@ class TeacherScreen extends StatelessWidget {
                       left: BorderSide(width: 1),
                       bottom: BorderSide(width: 1))),
               child: Center(
-                child: Text("NAMA"),
-              ),
-            ),
-            Container(
-              width: 150,
-              height: 30,
-              decoration: BoxDecoration(
-                  color: AppColors.abukusuka,
-                  border: Border(
-                      top: BorderSide(width: 1),
-                      left: BorderSide(width: 1),
-                      bottom: BorderSide(width: 1))),
-              child: Center(
-                child: Text("Kelas"),
+                child: Text("NAMA",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
@@ -177,7 +176,39 @@ class TeacherScreen extends StatelessWidget {
                       left: BorderSide(width: 1),
                       bottom: BorderSide(width: 1))),
               child: Center(
-                child: Text("TUGAS I"),
+                child: Text("KELAS",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            Container(
+              width: 80,
+              height: 30,
+              decoration: BoxDecoration(
+                  color: AppColors.abukusuka,
+                  border: Border(
+                      top: BorderSide(width: 1),
+                      left: BorderSide(width: 1),
+                      bottom: BorderSide(width: 1))),
+              child: Center(
+                child: Text("TUGAS I",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            Container(
+              width: 80,
+              height: 30,
+              decoration: BoxDecoration(
+                  color: AppColors.abukusuka,
+                  border: Border(
+                      top: BorderSide(width: 1),
+                      left: BorderSide(width: 1),
+                      bottom: BorderSide(width: 1))),
+              child: Center(
+                child: Text("TUGAS II",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
@@ -190,20 +221,41 @@ class TeacherScreen extends StatelessWidget {
                       left: BorderSide(width: 1),
                       bottom: BorderSide(width: 1))),
               child: Center(
-                child: Text("TUGAS II"),
+                child: Text("Kehadiran",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
-              width: 100,
+              width: 50,
               height: 30,
               decoration: BoxDecoration(
                   color: AppColors.abukusuka,
                   border: Border(
-                      top: BorderSide(width: 1),
-                      left: BorderSide(width: 1),
-                      bottom: BorderSide(width: 1))),
+                    top: BorderSide(width: 1),
+                    left: BorderSide(width: 1),
+                    bottom: BorderSide(width: 1),
+                  )),
               child: Center(
-                child: Text("Kehadiran"),
+                child: Text("UTS",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+              ),
+            ),
+            Container(
+              width: 50,
+              height: 30,
+              decoration: BoxDecoration(
+                  color: AppColors.abukusuka,
+                  border: Border(
+                    top: BorderSide(width: 1),
+                    left: BorderSide(width: 1),
+                    bottom: BorderSide(width: 1),
+                  )),
+              child: Center(
+                child: Text("UAS",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
@@ -217,39 +269,13 @@ class TeacherScreen extends StatelessWidget {
                     bottom: BorderSide(width: 1),
                   )),
               child: Center(
-                child: Text("UTS"),
+                child: Text("NILAI AKHIR",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             ),
             Container(
-              width: 100,
-              height: 30,
-              decoration: BoxDecoration(
-                  color: AppColors.abukusuka,
-                  border: Border(
-                    top: BorderSide(width: 1),
-                    left: BorderSide(width: 1),
-                    bottom: BorderSide(width: 1),
-                  )),
-              child: Center(
-                child: Text("UAS"),
-              ),
-            ),
-            Container(
-              width: 100,
-              height: 30,
-              decoration: BoxDecoration(
-                  color: AppColors.abukusuka,
-                  border: Border(
-                    top: BorderSide(width: 1),
-                    left: BorderSide(width: 1),
-                    bottom: BorderSide(width: 1),
-                  )),
-              child: Center(
-                child: Text("NILAI AKHIR"),
-              ),
-            ),
-            Container(
-              width: 75,
+              width: 50,
               height: 30,
               decoration: BoxDecoration(
                   color: AppColors.abukusuka,
@@ -259,14 +285,16 @@ class TeacherScreen extends StatelessWidget {
                       bottom: BorderSide(width: 1),
                       right: BorderSide(width: 1))),
               child: Center(
-                child: Text("ACTION"),
+                child: Text("ACTION",
+                    style:
+                        TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
               ),
             )
           ],
         ));
   }
 
-  Widget isiTbl(Mteach model,context) {
+  Widget isiTbl(Mteach model, context) {
     return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
       Container(
         width: 100,
@@ -275,7 +303,8 @@ class TeacherScreen extends StatelessWidget {
             border: Border(
                 left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
         child: Center(
-          child: Text("${model.npm}"),
+          child: Text("${model.npm}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
         ),
       ),
       Container(
@@ -285,17 +314,8 @@ class TeacherScreen extends StatelessWidget {
             border: Border(
                 left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
         child: Center(
-          child: Text("${model.nama}"),
-        ),
-      ),
-      Container(
-        width: 150,
-        height: 30,
-        decoration: BoxDecoration(
-            border: Border(
-                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
-        child: Center(
-          child: Text("${model.kelas}"),
+          child: Text("${model.nama}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
         ),
       ),
       Container(
@@ -305,7 +325,30 @@ class TeacherScreen extends StatelessWidget {
             border: Border(
                 left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
         child: Center(
-          child: Text("${model.tugas1}"),
+          child: Text("${model.kelas}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ),
+      ),
+      Container(
+        width: 80,
+        height: 30,
+        decoration: BoxDecoration(
+            border: Border(
+                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
+        child: Center(
+          child: Text("${model.tugas1}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ),
+      ),
+      Container(
+        width: 80,
+        height: 30,
+        decoration: BoxDecoration(
+            border: Border(
+                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
+        child: Center(
+          child: Text("${model.tugas2}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
         ),
       ),
       Container(
@@ -315,7 +358,30 @@ class TeacherScreen extends StatelessWidget {
             border: Border(
                 left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
         child: Center(
-          child: Text("${model.tugas2}"),
+          child: Text("${model.kehadiran}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ),
+      ),
+      Container(
+        width: 50,
+        height: 30,
+        decoration: BoxDecoration(
+            border: Border(
+                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
+        child: Center(
+          child: Text("${model.uts}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
+        ),
+      ),
+      Container(
+        width: 50,
+        height: 30,
+        decoration: BoxDecoration(
+            border: Border(
+                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
+        child: Center(
+          child: Text("${model.uas}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
         ),
       ),
       Container(
@@ -325,41 +391,12 @@ class TeacherScreen extends StatelessWidget {
             border: Border(
                 left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
         child: Center(
-          child: Text("${model.kehadiran}"),
+          child: Text("${model.nakhir}",
+              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
         ),
       ),
       Container(
-        width: 100,
-        height: 30,
-        decoration: BoxDecoration(
-            border: Border(
-                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
-        child: Center(
-          child: Text("${model.uts}"),
-        ),
-      ),
-      Container(
-        width: 100,
-        height: 30,
-        decoration: BoxDecoration(
-            border: Border(
-                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
-        child: Center(
-          child: Text("${model.uas}"),
-        ),
-      ),
-      Container(
-        width: 100,
-        height: 30,
-        decoration: BoxDecoration(
-            border: Border(
-                left: BorderSide(width: 1), bottom: BorderSide(width: 1))),
-        child: Center(
-          child: Text("${model.nakhir}"),
-        ),
-      ),
-      Container(
-          width: 75,
+          width: 50,
           height: 30,
           decoration: BoxDecoration(
               border: Border(
@@ -562,7 +599,7 @@ class TeacherScreen extends StatelessWidget {
                         ),
                       ),
                       Divider(),
-                       Container(
+                      Container(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
@@ -703,308 +740,331 @@ Widget buttonCount(isibtn) {
           ],
         )),
   );
-  }
- Widget buttonimport(context) {
-    return InkWell(
-      onTap: () {
-        showDialog<void>(
-            context: context,
-            barrierDismissible: true, // user must tap button!
-            builder: (BuildContext contextguru) {
-              return AlertDialog(
-                title: Container(
-                  padding: EdgeInsets.only(right: 15),
-                  height: 60,
-                  color: AppColors.purplePiksi,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        margin: EdgeInsets.only(left: 20),
-                        child: Text(
-                          "Import Nilai Perkuliahan",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold),
-                        ),
-                      ),
-                      InkWell(
-                          onTap: () {
-                            Get.back();
-                          },
-                          child: Icon(
-                            Icons.close,
+}
+
+Widget buttonimport(context) {
+  return InkWell(
+    onTap: () {
+      showDialog<void>(
+          context: context,
+          barrierDismissible: true, // user must tap button!
+          builder: (BuildContext contextguru) {
+            return AlertDialog(
+              title: Container(
+                padding: EdgeInsets.only(right: 15),
+                height: 60,
+                color: AppColors.purplePiksi,
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 20),
+                      child: Text(
+                        "Import Nilai Perkuliahan",
+                        style: TextStyle(
                             color: Colors.white,
-                          )),
-                    ],
-                  ),
+                            fontSize: 20,
+                            fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    InkWell(
+                        onTap: () {
+                          Get.back();
+                        },
+                        child: Icon(
+                          Icons.close,
+                          color: Colors.white,
+                        )),
+                  ],
                 ),
-                content: Container(
+              ),
+              content: Container(
                   width: 800,
                   height: 180,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text('Download Format',style:
-                        TextStyle(fontSize: 10, color: Colors.blue),
-                     ),
-                     Divider(),
-                     Row(
-                      children: [
-                        Text('File nilai*.xls', style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),),
-                        Text('(pastikan file excel sesuai dengan format/download template)', style: TextStyle(fontSize: 15, color: Colors.red),),
-                      
-                        
-                        
-                      ],
-                     ),
-                     Container(
-                      child: Row(
+                      Text(
+                        'Download Format',
+                        style: TextStyle(fontSize: 10, color: Colors.blue),
+                      ),
+                      Divider(),
+                      Row(
                         children: [
-                          Container(
-                      margin: EdgeInsets.only(top: 8),
-                      width: 700,
-                      height: 25,
-                      decoration: BoxDecoration(color: Colors.white,border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                      right: BorderSide(width: 0.5, color: Colors.black)
-                    ),),
-                      child: Row(
-                        children: [
-                          Text('   Pilih File Excel', style: TextStyle(fontSize: 10),),
-
+                          Text(
+                            'File nilai*.xls',
+                            style: TextStyle(
+                                fontWeight: FontWeight.bold, fontSize: 15),
+                          ),
+                          Text(
+                            '(pastikan file excel sesuai dengan format/download template)',
+                            style: TextStyle(fontSize: 15, color: Colors.red),
+                          ),
                         ],
                       ),
-                    
-                      
-                     ),
-                     Container(
-                      margin: EdgeInsets.only(top: 8),
-                      width: 85,
-                      height: 25,
-                      decoration: BoxDecoration(color: AppColors.abukusuka, border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                      right: BorderSide(width: 0.5, color: Colors.black)
-                    ),),
-                      child: Text('      Browse', style: TextStyle(fontSize: 13),),
-                     )
-                        ],
-                      ),
-                     ),
-                     Column(
-                      children: [
-                        Row(
+                      Container(
+                        child: Row(
                           children: [
                             Container(
-                          margin: EdgeInsets.only(top: 20),
-                          width: 50,
-                          height: 25,
-                          decoration: BoxDecoration(color: Colors.green, borderRadius: BorderRadius.circular(5)),
-                          child: 
-                          Icon(Icons.check_sharp,
-                          color: Colors.white,)
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 20, left: 8),
-                          width: 50,
-                          height: 25,
-                          decoration: BoxDecoration(color: Colors.orange, borderRadius: BorderRadius.circular(5)),
-                          child: 
-                          Icon(Icons.restore_sharp,
-                          color: Colors.white,)
-                        ),
-                        Container(
-                          margin: EdgeInsets.only(top: 20, left: 8),
-                          width: 50,
-                          height: 25,
-                          decoration: BoxDecoration(color: Colors.red, borderRadius: BorderRadius.circular(5)),
-                          child: 
-                          Icon(Icons.cancel_outlined,
-                          color: Colors.white,)
-                        )
+                              margin: EdgeInsets.only(top: 8),
+                              width: 700,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                color: Colors.white,
+                                border: Border(
+                                    top: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    left: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    bottom: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    right: BorderSide(
+                                        width: 0.5, color: Colors.black)),
+                              ),
+                              child: Row(
+                                children: [
+                                  Text(
+                                    '   Pilih File Excel',
+                                    style: TextStyle(fontSize: 10),
+                                  ),
+                                ],
+                              ),
+                            ),
+                            Container(
+                              margin: EdgeInsets.only(top: 8),
+                              width: 85,
+                              height: 25,
+                              decoration: BoxDecoration(
+                                color: AppColors.abukusuka,
+                                border: Border(
+                                    top: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    left: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    bottom: BorderSide(
+                                        width: 0.5, color: Colors.black),
+                                    right: BorderSide(
+                                        width: 0.5, color: Colors.black)),
+                              ),
+                              child: Text(
+                                '      Browse',
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            )
                           ],
                         ),
-                         
-                      ],
-                     )
+                      ),
+                      Column(
+                        children: [
+                          Row(
+                            children: [
+                              Container(
+                                  margin: EdgeInsets.only(top: 20),
+                                  width: 50,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                      color: Colors.green,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Icon(
+                                    Icons.check_sharp,
+                                    color: Colors.white,
+                                  )),
+                              Container(
+                                  margin: EdgeInsets.only(top: 20, left: 8),
+                                  width: 50,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                      color: Colors.orange,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Icon(
+                                    Icons.restore_sharp,
+                                    color: Colors.white,
+                                  )),
+                              Container(
+                                  margin: EdgeInsets.only(top: 20, left: 8),
+                                  width: 50,
+                                  height: 25,
+                                  decoration: BoxDecoration(
+                                      color: Colors.red,
+                                      borderRadius: BorderRadius.circular(5)),
+                                  child: Icon(
+                                    Icons.cancel_outlined,
+                                    color: Colors.white,
+                                  ))
+                            ],
+                          ),
+                        ],
+                      )
                     ],
-                  )
-                ),
+                  )),
+            );
+          });
+    },
+    borderRadius: BorderRadius.circular(20),
+    child: Container(
+      width: 60,
+      height: 30,
+      margin: EdgeInsets.only(top: 30),
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8), color: Colors.green),
+      child: Icon(
+        Icons.file_copy,
+        color: Colors.white,
+        size: 20,
+      ),
+    ),
+  );
+}
 
-              );
-            });
-      },
-      borderRadius: BorderRadius.circular(20),
-      child: Container(
-        width: 60,
-        height: 30,
-        margin: EdgeInsets.only(top: 30),
-         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          color: Colors.green),
-            child: Icon(
-            Icons.file_copy,
-            color: Colors.white,
-            size: 20,
+Widget pagination() {
+  return Container(
+    child: Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Container(
+          margin: EdgeInsets.only(top: 40, left: 20),
+          child: Text('Showing 1 to 40 of entries'),
         ),
-      ),
-    );
-  }
-
-  Widget pagination() {
-    return Container(
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
-          Container(
-            margin: EdgeInsets.only(top: 40, left: 20),
-            child: Text('Showing 1 to 40 of entries'),
+        Container(
+          child: Row(
+            children: [
+              Container(
+                margin: EdgeInsets.only(top: 40),
+                width: 60,
+                height: 25,
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 0.5, color: Colors.black),
+                    left: BorderSide(width: 0.5, color: Colors.black),
+                    bottom: BorderSide(width: 0.5, color: Colors.black),
+                  ),
+                ),
+                child: Center(
+                  child: Text('previous'),
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                margin: EdgeInsets.only(top: 40),
+                decoration: BoxDecoration(
+                    border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
+                    ),
+                    color: AppColors.purplePiksi),
+                child: Center(
+                  child: Text(
+                    '1',
+                    style: TextStyle(fontSize: 15, color: Colors.white),
+                  ),
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                margin: EdgeInsets.only(top: 40),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 0.5, color: Colors.black),
+                    left: BorderSide(width: 0.5, color: Colors.black),
+                    bottom: BorderSide(width: 0.5, color: Colors.black),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '2',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                margin: EdgeInsets.only(top: 40),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 0.5, color: Colors.black),
+                    left: BorderSide(width: 0.5, color: Colors.black),
+                    bottom: BorderSide(width: 0.5, color: Colors.black),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '3',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                margin: EdgeInsets.only(top: 40),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 0.5, color: Colors.black),
+                    left: BorderSide(width: 0.5, color: Colors.black),
+                    bottom: BorderSide(width: 0.5, color: Colors.black),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '4',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 25,
+                height: 25,
+                margin: EdgeInsets.only(top: 40),
+                decoration: BoxDecoration(
+                  border: Border(
+                    top: BorderSide(width: 0.5, color: Colors.black),
+                    left: BorderSide(width: 0.5, color: Colors.black),
+                    bottom: BorderSide(width: 0.5, color: Colors.black),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '...',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              ),
+              Container(
+                width: 40,
+                height: 25,
+                margin: EdgeInsets.only(right: 40, top: 40),
+                decoration: BoxDecoration(
+                  border: Border(
+                      top: BorderSide(width: 0.5, color: Colors.black),
+                      left: BorderSide(width: 0.5, color: Colors.black),
+                      bottom: BorderSide(width: 0.5, color: Colors.black),
+                      right: BorderSide(width: 0.5, color: Colors.black)),
+                ),
+                child: Center(
+                  child: Text(
+                    'next',
+                    style: TextStyle(
+                      fontSize: 15,
+                    ),
+                  ),
+                ),
+              )
+            ],
           ),
-          Container(
-            child: Row(
-              children: [
-                Container(
-                  margin: EdgeInsets.only(top: 40),
-                  width: 60,
-                  height: 25,
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text('previous'),
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  margin: EdgeInsets.only(top: 40),
-                  decoration: BoxDecoration(
-                      border: Border(
-                        top: BorderSide(width: 0.5, color: Colors.black),
-                        left: BorderSide(width: 0.5, color: Colors.black),
-                        bottom: BorderSide(width: 0.5, color: Colors.black),
-                      ),
-                      color: AppColors.purplePiksi),
-                  child: Center(
-                    child: Text(
-                      '1',
-                      style: TextStyle(fontSize: 15, color: Colors.white),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  margin: EdgeInsets.only(top: 40),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '2',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  margin: EdgeInsets.only(top: 40),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '3',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  margin: EdgeInsets.only(top: 40),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '4',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 25,
-                  height: 25,
-                  margin: EdgeInsets.only(top: 40),
-                  decoration: BoxDecoration(
-                    border: Border(
-                      top: BorderSide(width: 0.5, color: Colors.black),
-                      left: BorderSide(width: 0.5, color: Colors.black),
-                      bottom: BorderSide(width: 0.5, color: Colors.black),
-                    ),
-                  ),
-                  child: Center(
-                    child: Text(
-                      '...',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                ),
-                Container(
-                  width: 40,
-                  height: 25,
-                  margin: EdgeInsets.only(right: 40, top: 40),
-                  decoration: BoxDecoration(
-                    border: Border(
-                        top: BorderSide(width: 0.5, color: Colors.black),
-                        left: BorderSide(width: 0.5, color: Colors.black),
-                        bottom: BorderSide(width: 0.5, color: Colors.black),
-                        right: BorderSide(width: 0.5, color: Colors.black)),
-                  ),
-                  child: Center(
-                    child: Text(
-                      'next',
-                      style: TextStyle(
-                        fontSize: 15,
-                      ),
-                    ),
-                  ),
-                )
-              ],
-            ),
-          )
-        ],
-      ),
-    );
-  }
+        )
+      ],
+    ),
+  );
+}

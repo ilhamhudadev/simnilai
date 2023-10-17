@@ -4,6 +4,7 @@ import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/grade/academic/controller/academic_controller.dart';
 import 'package:standard_project/module/grade/academic/controller/class_controller.dart';
+import 'package:standard_project/module/grade/academic/data/model/academicmodel.dart';
 import 'package:standard_project/module/grade/academic/data/model/classmodel.dart';
 
 class AcademicScreen extends StatelessWidget {
@@ -12,12 +13,12 @@ class AcademicScreen extends StatelessWidget {
     AppSize().init(context);
     final ScrollController _horizontal = ScrollController(),
         _vertical = ScrollController();
-    return GetBuilder<classapiController>(
-      init: classapiController(),
-      builder: (classapiController controller) {
+    return GetBuilder<AcademicapiController >(
+      init: AcademicapiController (),
+      builder: (AcademicapiController  controller) {
         return Scaffold(
-            body: FutureBuilder<List<ApiclassModel>>(
-                future: controller.futureclassData(),
+            body: FutureBuilder<List<ApiacademicModel>>(
+                future: controller.futureacademicData(),
                 builder: (context, Response) {
                   if (Response.hasData) {
                     var value = Response.data;

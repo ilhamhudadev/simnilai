@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:standard_project/core/api/api_model.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/grade/academic/controller/class_controller.dart';
+import 'package:standard_project/module/grade/academic/controller/transkip_controller.dart';
 import 'package:standard_project/module/grade/academic/data/model/classmodel.dart';
+import 'package:standard_project/module/grade/academic/data/model/transkipmodel.dart';
 
 class TranskripScreen extends StatelessWidget {
   @override
@@ -11,12 +14,12 @@ class TranskripScreen extends StatelessWidget {
     AppSize().init(context);
     final ScrollController _horizontal = ScrollController(),
         _vertical = ScrollController();
-    return GetBuilder<classapiController>(
-      init: classapiController(),
-      builder: (classapiController controller) {
+    return GetBuilder<TranskipApiController>(
+      init: TranskipApiController(),
+      builder: (TranskipApiController controller) {
         return Scaffold(
-          body: FutureBuilder<List<ApiclassModel>>(
-            future: controller.futureclassData(),
+          body: FutureBuilder<List<ApitranskipModel>>(
+            future: controller.futuretranskipData(),
             builder: (context, Response) {
               if (Response.hasData) {
                 var value = Response.data;
