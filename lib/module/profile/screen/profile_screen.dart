@@ -1,31 +1,45 @@
+// ignore_for_file: unused_local_variable, prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:standard_project/core/assets/app_assets.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/profile/controller/profile_controller.dart';
+import 'package:standard_project/module/profile/data/model/modelviewUser.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
+  // ignore: avoid_renaming_method_parameters
   Widget build(BuildContext contextprofil) {
     AppSize().init(contextprofil);
     return GetBuilder<ProfileController>(
       init: ProfileController(),
       builder: (ProfileController controller) {
         return Scaffold(
-          backgroundColor: AppColors.abukusuka,
-          body: Container(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [profile(contextprofil)],
-            ),
-          ),
-        );
+            backgroundColor: AppColors.abukusuka,
+            body: FutureBuilder<MviewUserModel>(
+                future: controller.futureProfilData(),
+                builder: (context, response) {
+                  if (response.hasData) {
+                    var value = response.data;
+                    return Container(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [profile(contextprofil, value!)],
+                      ),
+                    );
+                  } else {
+                    return Center(
+                      child: Text("GAK ADA DATA BROWW"),
+                    );
+                  }
+                }));
       },
     );
   }
 
-  Widget profile(context) {
+  Widget profile(BuildContext contextprofil, MviewUserModel value) {
     return Stack(
       children: [
         Container(
@@ -130,11 +144,12 @@ class ProfileScreen extends StatelessWidget {
                                 ),
                               ],
                             ),
-                            child: isitab(),
+                            child: isitab(value, contextprofil),
                           ),
                           Container(
                             margin: EdgeInsets.only(left: 30, top: 15),
-                            child: button(context, 'Ubah Password'),
+                            child:
+                                button(contextprofil, 'Ubah Password', value),
                           ),
                         ],
                       ),
@@ -160,7 +175,7 @@ class ProfileScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        child: isitab2(),
+                        child: isitab2(value, contextprofil as BuildContext),
                       ),
                     ],
                   ),
@@ -173,7 +188,7 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget button(context, title) {
+  Widget button(context, title, value) {
     return InkWell(
       onTap: () {
         showDialog<void>(
@@ -213,7 +228,7 @@ class ProfileScreen extends StatelessWidget {
                   width: 300,
                   height: 200,
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Container(
                         child: Row(
@@ -301,29 +316,29 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget isitab() {
+Widget isitab(MviewUserModel value, BuildContext contextprofil) {
   return Column(
     children: [
-      atributtab('Username', '21200011', 35),
-      atributtab('Password', '********', 10),
-      atributtab('NPM', '21200011', 10),
-      atributtab('Program Studi', 'MIF/SI', 10),
-      atributtab('Kelas', 'DDT-20/21', 10),
-      atributtab('Semester', '4', 10),
+      atributtab('Username', "${value.kecamatan}", 35),
+      atributtab('Password', "${value.id}", 10),
+      atributtab('NPM', "${value.lon}", 10),
+      atributtab('Program Studi', "${value.kecamatan}", 10),
+      atributtab('Kelas', '${value.kecamatan}', 10),
+      atributtab('Semester', '${value.kecamatan}', 10),
     ],
   );
 }
 
-Widget isitab2() {
+Widget isitab2(MviewUserModel value, BuildContext contextprofil) {
   return Column(
     children: [
-      atributtab('Nama Lengkap', 'Alpin Agung Nugroho', 35),
-      atributtab('Tempat Lahir', 'Bandung', 13),
-      atributtab('Tanggal Lahir', '18 September 2003', 13),
-      atributtab('Jenis Kelamin', 'Laki-Laki', 13),
-      atributtab('Agama', 'Islam', 13),
-      atributtab('Alamat', 'Kp.ranca enong rt2 rw16', 13),
-      atributtab('No.Handphone', '085798331352', 13),
+      atributtab('Nama Lengkap', '${value.lon}', 35),
+      atributtab('Tempat Lahir', '${value.kota}', 13),
+      atributtab('Tanggal Lahir', '${value.propinsi}', 13),
+      atributtab('Jenis Kelamin', '${value.kecamatan}', 13),
+      atributtab('Agama', '${value.kecamatan}', 13),
+      atributtab('Alamat', ' ${value.kecamatan}', 13),
+      atributtab('No.Handphone', '${value.kecamatan}', 13),
     ],
   );
 }
