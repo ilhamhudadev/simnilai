@@ -20,8 +20,11 @@ import 'package:standard_project/module/grade/teacher/screen/teacher_screen.dart
 // import 'package:standard_project/module/home/screen/home_screen.dart';
 import 'package:standard_project/module/profile/screen/profile_screen.dart';
 import 'package:standard_project/module/profile/screen/view_user.dart';
-import 'package:standard_project/module/study/screen/study_screen.dart';
+import 'package:standard_project/module/study/data/model/study.dart';
+import 'package:standard_project/module/study/data/model/study.dart';
+
 import 'package:standard_project/module/grade/academic/screen/transkip.dart';
+import 'package:standard_project/module/study/screen/study_screen.dart';
 
 class AppRoute {
   static final all = [
@@ -39,7 +42,7 @@ class AppRoute {
     // GetPage(name: RouteConstant.auth_screen, page: () => AuthScreen()),
     GetPage(name: RouteConstant.profilScreen, page: () => ProfileScreen()),
     GetPage(name: RouteConstant.viewUser, page: () => ViewUser()),
-    GetPage(name: RouteConstant.studyScreen, page: () => Studyscreen()),
+    GetPage(name: RouteConstant.Studyscreen , page: () => Studyscreen ()),
     GetPage(name: RouteConstant.teacherScreen, page: () => TeacherScreen()),
     GetPage(name: RouteConstant.academicScreen, page: () => AcademicScreen()),
     GetPage(name: RouteConstant.transkipScreen, page: () => TranskripScreen()),
