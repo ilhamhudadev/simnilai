@@ -1,7 +1,6 @@
 import 'package:get/get.dart';
 import 'package:standard_project/core/route/route_constant.dart';
-import 'package:standard_project/module/apibaru/screen/apibaru_screen.dart';
-import 'package:standard_project/module/apilist/screen/samplelistapi.dart';
+
 import 'package:standard_project/module/auth/screen/auth_screen.dart';
 import 'package:standard_project/module/grade/student/screen/student_screen.dart';
 // import 'package:standard_project/module/auth/screen/loginScreen.dart';
@@ -38,7 +37,6 @@ class AppRoute {
     // GetPage(name: RouteConstant.homeScreen, page: () => HomeScreen()),
     // GetPage(name: RouteConstant.auth_screen, page: () => AuthScreen()),
     GetPage(name: RouteConstant.profilScreen, page: () => ProfileScreen()),
-    GetPage(name: RouteConstant.viewUser, page: () => ViewUser()),
     GetPage(name: RouteConstant.studyScreen, page: () => Studyscreen()),
     GetPage(name: RouteConstant.teacherScreen, page: () => TeacherScreen()),
     GetPage(name: RouteConstant.academicScreen, page: () => AcademicScreen()),
@@ -48,8 +46,7 @@ class AppRoute {
     // GetPage(
     //     name: RouteConstant.viewnilaiacademic, page: () => viewnilaiacademic()),
     GetPage(name: RouteConstant.sampleHitAPI, page: () => SamplehitapiScreen()),
-    GetPage(name: RouteConstant.ApiScreen  , page: () =>  ApiScreen ()),
-    GetPage(name: RouteConstant.ListapiScreen , page: () =>  ListapiScreen ()),
-     GetPage(name: RouteConstant.studentScreen, page: () => StudentScreen()),
+
+    GetPage(name: RouteConstant.studentScreen, page: () => StudentScreen()),
   ];
 }
