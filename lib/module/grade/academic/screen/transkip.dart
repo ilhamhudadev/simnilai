@@ -7,6 +7,8 @@ import 'package:standard_project/module/grade/academic/controller/class_controll
 import 'package:standard_project/module/grade/academic/controller/transkip_controller.dart';
 import 'package:standard_project/module/grade/academic/data/model/classmodel.dart';
 import 'package:standard_project/module/grade/academic/data/model/transkipmodel.dart';
+import 'package:standard_project/module/profile/data/model/student_profile_model.dart';
+import 'package:pdf/widgets.dart' as pw;
 
 class TranskripScreen extends StatelessWidget {
   @override
@@ -14,403 +16,597 @@ class TranskripScreen extends StatelessWidget {
     AppSize().init(context);
     final ScrollController _horizontal = ScrollController(),
         _vertical = ScrollController();
-    return GetBuilder<TranskipApiController>(
-      init: TranskipApiController(),
-      builder: (TranskipApiController controller) {
+    var totalSKS = 0;
+    var avgNilaiTotal = 0;
+    return GetBuilder<TranscriptApiController>(
+      init: TranscriptApiController(),
+      builder: (TranscriptApiController controller) {
         return Scaffold(
-          body: FutureBuilder<List<ApitranskipModel>>(
-            future: controller.futuretranskipData(),
-            builder: (context, Response) {
-              if (Response.hasData) {
-                var value = Response.data;
-                return MaterialApp(
+            backgroundColor: Colors.grey.withOpacity(0.8),
+            body:
+                //  FutureBuilder<StudentTranscriptModel>(
+                //   future: controller.futuretranskipData(),
+                //   builder: (context, Response) {
+                //     if (Response.hasData) {
+                //       var value = Response.data!.data!;
+                //       return
+                MaterialApp(
+                    color: Colors.grey.withOpacity(0.8),
                     home: DefaultTabController(
                         length: 4,
                         child: Scaffold(
+                            backgroundColor: AppColors.abukusuka,
                             body: SingleChildScrollView(
-                          controller: _vertical,
-                          scrollDirection: Axis.vertical,
-                          child: SingleChildScrollView(
-                            controller: _horizontal,
-                            scrollDirection: Axis.horizontal,
-                            child: Container(
-                              color: AppColors.abukusuka,
-                              width: AppSize.screenWidth,
-                              child: Container(
-                                  child: Column(
-                                children: [
-                                  SizedBox(
-                                    height: 20,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        right: 1030, left: 60, bottom: 10),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Akademik",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.purplePiksi),
-                                        ),
-                                        Text("/",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold)),
-                                        Text("Transkip Nilai",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.purplePiksi))
-                                      ],
-                                    ),
-                                  ),
-                                  Container(
-                                    width: 950,
-                                    height: 80,
-                                    padding:
-                                        EdgeInsets.only(bottom: 20, top: 10),
-                                    margin: EdgeInsets.only(
-                                        top: 10, right: 210, bottom: 5),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.5),
-                                          spreadRadius: 5,
-                                          blurRadius: 20,
-                                          offset: Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: cari(),
-                                  ),
-                                  Container(
-                                    width: 950,
-                                    padding:
-                                        EdgeInsets.only(top: 20, bottom: 20),
-                                    margin: EdgeInsets.only(
-                                        top: 20, right: 210, bottom: 50),
-                                    decoration: BoxDecoration(
-                                      color: Colors.white,
-                                      borderRadius: BorderRadius.circular(10),
-                                      boxShadow: [
-                                        BoxShadow(
-                                          color: Colors.grey.withOpacity(0.8),
-                                          spreadRadius: 5,
-                                          blurRadius: 20,
-                                          offset: Offset(0,
-                                              3), // changes position of shadow
-                                        ),
-                                      ],
-                                    ),
-                                    child: Container(
+                              controller: _vertical,
+                              scrollDirection: Axis.vertical,
+                              child: SingleChildScrollView(
+                                controller: _horizontal,
+                                scrollDirection: Axis.horizontal,
+                                child: Container(
+                                  color: AppColors.abukusuka,
+                                  width: AppSize.screenWidth,
+                                  child: Container(
                                       child: Column(
-                                        children: [
-                                          headersection(),
-                                          ListView.builder(
-                                              scrollDirection: Axis.vertical,
-                                              controller:
-                                                  controller.scrollController,
-                                              shrinkWrap: true,
-                                              itemCount: value!.length,
-                                              itemBuilder: ((context, index) {
-                                                return Container(
-                                                  child: Row(
-                                                    mainAxisAlignment:
-                                                        MainAxisAlignment
-                                                            .center,
-                                                    children: [
-                                                      Container(
-                                                        width: 40,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 180,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 300,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        ),
-                                                      ),
-                                                      Container(
-                                                        width: 50,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 50,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 50,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 80,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                      Container(
-                                                        width: 90,
-                                                        padding:
-                                                            EdgeInsets.all(10),
-                                                        decoration:
-                                                            BoxDecoration(
-                                                          border: Border(
-                                                            left: BorderSide(
-                                                                width: 0.5),
-                                                            bottom: BorderSide(
-                                                                width: 0.5),
-                                                            right: BorderSide(
-                                                                width: 0.5),
-                                                          ),
-                                                        ),
-                                                        child: Center(
-                                                            child: Text(
-                                                          "${value[index].id}",
-                                                          style: TextStyle(
-                                                              fontSize: 12),
-                                                        )),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                );
-                                              })),
-                                          lastsection(),
-                                          buttonsection()
-                                        ],
+                                    children: [
+                                      SizedBox(
+                                        height: 20,
                                       ),
-                                    ),
-                                  ),
-                                ],
-                              )),
-                            ),
-                          ),
-                        ))));
-              } else {
-                return Container(
-                  child: Text("data tidak ada"),
-                );
-              }
-            },
-          ),
-        );
+                                      Container(
+                                        width: 950,
+                                        height: 80,
+                                        padding: EdgeInsets.only(
+                                            bottom: 20, top: 10),
+                                        margin: EdgeInsets.only(
+                                            top: 10, right: 210, bottom: 5),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.5),
+                                              spreadRadius: 5,
+                                              blurRadius: 20,
+                                              offset: Offset(0,
+                                                  3), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: cari(controller),
+                                      ),
+                                      Container(
+                                        width: 950,
+                                        padding: EdgeInsets.only(
+                                            top: 20, bottom: 20),
+                                        margin: EdgeInsets.only(
+                                            top: 20, right: 210, bottom: 50),
+                                        decoration: BoxDecoration(
+                                          color: Colors.white,
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          boxShadow: [
+                                            BoxShadow(
+                                              color:
+                                                  Colors.grey.withOpacity(0.8),
+                                              spreadRadius: 5,
+                                              blurRadius: 20,
+                                              offset: Offset(0,
+                                                  3), // changes position of shadow
+                                            ),
+                                          ],
+                                        ),
+                                        child: Obx(
+                                          () => Container(
+                                            child: Column(
+                                              children: [
+                                                controller.dataMahasiswa
+                                                        .isNotEmpty
+                                                    ? findstudent(controller)
+                                                    : Container(),
+                                                headersection(),
+                                                controller.filteredDataList
+                                                        .isNotEmpty
+                                                    ? ListView.builder(
+                                                        scrollDirection:
+                                                            Axis.vertical,
+                                                        controller: controller
+                                                            .scrollController,
+                                                        shrinkWrap: true,
+                                                        itemCount: controller
+                                                            .filteredDataList
+                                                            .length,
+                                                        itemBuilder:
+                                                            ((context, index) {
+                                                          var value = controller
+                                                              .filteredDataList;
+                                                          totalSKS = totalSKS +
+                                                              int.parse(
+                                                                  value[index]
+                                                                      .sks!);
+                                                          avgNilaiTotal = avgNilaiTotal +
+                                                              int.parse(controller.checkNilaiTotal(
+                                                                  value[index]
+                                                                      .partisipasi,
+                                                                  value[index]
+                                                                      .tugas1,
+                                                                  value[index]
+                                                                      .tugas2,
+                                                                  value[index]
+                                                                      .nilaiuts,
+                                                                  value[index]
+                                                                      .nilaiuas));
+                                                          return Container(
+                                                            child: Row(
+                                                              mainAxisAlignment:
+                                                                  MainAxisAlignment
+                                                                      .center,
+                                                              children: [
+                                                                Container(
+                                                                  width: 40,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${index + 1}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 180,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${value[index].kodematkul}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 300,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Text(
+                                                                    "${value[index].matkul}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  ),
+                                                                ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${value[index].sks}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${value[index].nilaiuts}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 50,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${value[index].nilaiuas}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 80,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${controller.checkNilaiHuruf(value[index].partisipasi, value[index].tugas1, value[index].tugas2, value[index].nilaiuts, value[index].nilaiuas)}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                                Container(
+                                                                  width: 90,
+                                                                  padding:
+                                                                      EdgeInsets
+                                                                          .all(
+                                                                              10),
+                                                                  decoration:
+                                                                      BoxDecoration(
+                                                                    border:
+                                                                        Border(
+                                                                      left: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      bottom: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                      right: BorderSide(
+                                                                          width:
+                                                                              0.5),
+                                                                    ),
+                                                                  ),
+                                                                  child: Center(
+                                                                      child:
+                                                                          Text(
+                                                                    "${controller.checkNilaiTotal(value[index].partisipasi, value[index].tugas1, value[index].tugas2, value[index].nilaiuts, value[index].nilaiuas)}",
+                                                                    style: TextStyle(
+                                                                        fontSize:
+                                                                            12),
+                                                                  )),
+                                                                ),
+                                                              ],
+                                                            ),
+                                                          );
+                                                        }))
+                                                    : Center(
+                                                        child: Container()),
+                                                lastsection(
+                                                    avgNilaiTotal,
+                                                    totalSKS,
+                                                    controller.filteredDataList
+                                                        .length,
+                                                    controller),
+                                                buttonsection(controller)
+                                              ],
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ],
+                                  )),
+                                ),
+                              ),
+                            ))))
+            //     } else {
+            //       return Center(
+            //           child: Container(
+            //         child: CircularProgressIndicator(),
+            //       ));
+            //     }
+            //   },
+            // ),
+            );
       },
     );
   }
 
-  Widget cari() {
+  Widget cari(TranscriptApiController controller) {
     return Container(
-      margin: EdgeInsets.only(left: 390),
+      margin: EdgeInsets.only(left: 20),
       padding: EdgeInsets.only(top: 10, left: 20),
-      child: Row(children: [
+      child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween, children: [
         Container(
-          width: 288,
-          height: 30,
-          decoration: BoxDecoration(),
-          child: TextField(
-            decoration: InputDecoration(
-                border:
-                    OutlineInputBorder(borderRadius: BorderRadius.circular(10)),
-                labelText: 'Search',
-                labelStyle: TextStyle(fontSize: 12)),
-          ),
-        ),
-        SizedBox(
-          width: 10,
-        ),
-        Container(
-          width: 80,
-          height: 30,
-          decoration: BoxDecoration(
-              borderRadius: BorderRadius.only(
-                  topRight: Radius.circular(10),
-                  bottomRight: Radius.circular(10),
-                  topLeft: Radius.circular(10),
-                  bottomLeft: Radius.circular(10)),
-              color: Colors.blue),
-          child: Icon(
-            Icons.search,
-            color: Colors.white,
-          ),
-        ),
-        Container(
-          width: 100,
-          height: 30,
-          margin: EdgeInsets.only(left: 10),
-          decoration: BoxDecoration(
-              color: Colors.deepPurple,
-              borderRadius: BorderRadius.circular(10)),
-          padding: EdgeInsets.only(left: 18, right: 18),
+          padding: EdgeInsets.only(left: 20, bottom: 10),
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Icon(
-                Icons.refresh_sharp,
-                size: 20,
-                color: Colors.white,
-              ),
               Text(
-                "Refresh",
-                style: TextStyle(color: Colors.white, fontSize: 12),
-              )
+                "Akademik",
+                style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.bold,
+                    color: AppColors.purplePiksi),
+              ),
+              Text(" / ",
+                  style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold)),
+              Text("Transcript Nilai",
+                  style: TextStyle(
+                      fontSize: 15,
+                      fontWeight: FontWeight.normal,
+                      color: AppColors.purplePiksi))
             ],
           ),
         ),
+        Row(children: [
+          Container(
+            width: 288,
+            height: 30,
+            decoration: BoxDecoration(),
+            child: TextField(
+              controller: controller.searchController,
+              // onChanged: (value) => c.filterDataList(value),
+              decoration: InputDecoration(
+                  border: OutlineInputBorder(
+                      borderRadius: BorderRadius.circular(15)),
+                  labelText: 'Masukan NPM Mahasiswa',
+                  labelStyle: TextStyle(fontSize: 12)),
+            ),
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          InkWell(
+              onTap: () {
+                controller.getTranscriptData();
+                controller.getProfileMahasiswa();
+              },
+              child: Container(
+                width: 80,
+                height: 30,
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(15),
+                        bottomRight: Radius.circular(15),
+                        topLeft: Radius.circular(15),
+                        bottomLeft: Radius.circular(15)),
+                    color: Colors.blue),
+                child: Icon(
+                  Icons.search,
+                  color: Colors.white,
+                ),
+              )),
+          InkWell(
+              child: Container(
+            width: 100,
+            height: 30,
+            margin: EdgeInsets.only(left: 10),
+            decoration: BoxDecoration(
+                color: AppColors.purplePiksi,
+                borderRadius: BorderRadius.circular(15)),
+            padding: EdgeInsets.only(left: 18, right: 18),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Icon(
+                  Icons.refresh_sharp,
+                  size: 20,
+                  color: Colors.white,
+                ),
+                Text(
+                  "Refresh",
+                  style: TextStyle(color: Colors.white, fontSize: 12),
+                )
+              ],
+            ),
+          )),
+          SizedBox(
+            width: 20,
+          )
+        ])
       ]),
     );
   }
 
-  Widget findstudent() {
+  Widget findstudent(TranscriptApiController controller) {
+    var value = controller.dataMahasiswa[0];
     return Container(
       padding: EdgeInsets.only(top: 10),
-      margin: EdgeInsets.only(bottom: 20),
+      margin: EdgeInsets.all(20),
       child: Column(
+        mainAxisAlignment: MainAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Container(
             padding: EdgeInsets.only(top: 10, left: 40, right: 40),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Container(
-                  margin: EdgeInsets.only(right: 176),
                   child: Text(
-                    "Program/Jurusan",
+                    "Nama",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   ),
                 ),
                 Container(
-                  margin: EdgeInsets.only(right: 20),
-                  width: 410,
+                  width: 200,
                   height: 40,
                   decoration: BoxDecoration(
                       color: AppColors.abukusuka,
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(width: 0.1)),
+                  child: Center(
+                      child: Text(
+                    "${value.nama}",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10, left: 40, right: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Container(
+                  child: Text(
+                    "NPM",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
                 ),
                 Container(
-                  width: 470,
+                  child: Center(
+                      child: Text(
+                    "${value.npm}",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                  width: 200,
                   height: 40,
                   decoration: BoxDecoration(
                       color: AppColors.abukusuka,
                       borderRadius: BorderRadius.circular(5),
                       border: Border.all(width: 0.1)),
                 ),
+              ],
+            ),
+          ),
+          Container(
+            padding: EdgeInsets.only(top: 10, left: 40, right: 40),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: EdgeInsets.only(right: 20),
+                  child: Text(
+                    "Program / Jurusan",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  ),
+                ),
+                Row(
+                  children: [
+                    Container(
+                      width: 200,
+                      height: 40,
+                      decoration: BoxDecoration(
+                          color: AppColors.abukusuka,
+                          borderRadius: BorderRadius.circular(5),
+                          border: Border.all(width: 0.1)),
+                      child: Center(
+                          child: Text(
+                        "${value.program}",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      )),
+                    ),
+                    Container(
+                      height: 40,
+                      margin: EdgeInsets.only(left: 20, right: 20),
+                      child: Text(
+                        "/",
+                        style: TextStyle(fontWeight: FontWeight.bold),
+                      ),
+                    ),
+                    Container(
+                        height: 40,
+                        width: 200,
+                        decoration: BoxDecoration(
+                            color: AppColors.abukusuka,
+                            borderRadius: BorderRadius.circular(5),
+                            border: Border.all(width: 0.1)),
+                        child: Center(
+                          child: Text(
+                            "${value.jurusan}",
+                            style: TextStyle(fontWeight: FontWeight.bold),
+                          ),
+                        )),
+                  ],
+                )
               ],
             ),
           ),
@@ -426,7 +622,12 @@ class TranskripScreen extends StatelessWidget {
                   ),
                 ),
                 Container(
-                  width: 900,
+                  child: Center(
+                      child: Text(
+                    "${value.jurusan}",
+                    style: TextStyle(fontWeight: FontWeight.bold),
+                  )),
+                  width: 200,
                   height: 40,
                   decoration: BoxDecoration(
                       color: AppColors.abukusuka,
@@ -578,7 +779,8 @@ class TranskripScreen extends StatelessWidget {
     );
   }
 
-  Widget lastsection() {
+  Widget lastsection(
+      totalnilai, totalsks, length, TranscriptApiController controller) {
     return Container(
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
@@ -608,7 +810,7 @@ class TranskripScreen extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border(bottom: BorderSide(width: 0.5)),
             ),
-            child: Text("Total SKS :",
+            child: Text("Total SKS :  ${totalsks}",
                 textAlign: TextAlign.right,
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
@@ -643,18 +845,31 @@ class TranskripScreen extends StatelessWidget {
             child: Text("",
                 style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold)),
           ),
-          Container(
-            width: 90,
-            padding: EdgeInsets.all(10),
-            decoration: BoxDecoration(
-              border: Border(bottom: BorderSide(width: 0.5)),
-            ),
-            child: Text(
-              "Total IPK :",
-              textAlign: TextAlign.right,
-              style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
-            ),
-          ),
+          controller.filteredDataList.isNotEmpty
+              ? Container(
+                  width: 90,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.5)),
+                  ),
+                  child: Text(
+                    "Total IPK : ${controller.getIPK(totalsks, totalnilai).toStringAsFixed(1)}",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                )
+              : Container(
+                  width: 90,
+                  padding: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    border: Border(bottom: BorderSide(width: 0.5)),
+                  ),
+                  child: Text(
+                    "",
+                    textAlign: TextAlign.right,
+                    style: TextStyle(fontSize: 12, fontWeight: FontWeight.bold),
+                  ),
+                ),
           Container(
             width: 90,
             padding: EdgeInsets.all(10),
@@ -672,16 +887,18 @@ class TranskripScreen extends StatelessWidget {
     );
   }
 
-  Widget buttonsection() {
+  Widget buttonsection(TranscriptApiController controller) {
     return InkWell(
-        onTap: () {},
+        onTap: () {
+          // controller.printKHS();
+        },
         child: Container(
           padding: EdgeInsets.only(top: 20, left: 55),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               Container(
-                width: 160,
+                // width: 160,
                 height: 40,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(5),
@@ -696,8 +913,11 @@ class TranskripScreen extends StatelessWidget {
                       size: 20,
                       color: Colors.white,
                     ),
+                    SizedBox(
+                      width: 10,
+                    ),
                     Text(
-                      "Cetak Transkip",
+                      "Cetak Transcript",
                       style: TextStyle(
                           fontWeight: FontWeight.normal, color: Colors.white),
                     )

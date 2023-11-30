@@ -17,14 +17,14 @@ class StudentScreen extends StatelessWidget {
       init: ApiStudentController(),
       builder: (ApiStudentController controller) {
         return Scaffold(
-          body: FutureBuilder<List<ApiStudentModel>>(
+          body: FutureBuilder<StudentKHSModel>(
             future: controller.futurelistData(),
             builder: (context, Response) {
               if (Response.hasData) {
-                var value = Response.data;
+                var value = Response.data!.data;
                 return MaterialApp(
                     home: DefaultTabController(
-                        length: 4,  
+                        length: 4,
                         child: Scaffold(
                             body: SingleChildScrollView(
                           controller: _vertical,
@@ -36,36 +36,10 @@ class StudentScreen extends StatelessWidget {
                               color: AppColors.abukusuka,
                               width: AppSize.screenWidth,
                               child: Container(
-                                  child: Column( 
+                                  child: Column(
                                 children: [
                                   SizedBox(
                                     height: 20,
-                                  ),
-                                  Container(
-                                    padding: EdgeInsets.only(
-                                        right: 1000, left: 60, bottom: 2),
-                                    child: Row(
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        Text(
-                                          "Mahasiswa",
-                                          style: TextStyle(
-                                              fontSize: 15,
-                                              fontWeight: FontWeight.bold,
-                                              color: AppColors.purplePiksi),
-                                        ),
-                                        Text("/",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold)),
-                                        Text("Kartu Hasil Studi",
-                                            style: TextStyle(
-                                                fontSize: 15,
-                                                fontWeight: FontWeight.bold,
-                                                color: AppColors.purplePiksi))
-                                      ],
-                                    ),
                                   ),
                                   Container(
                                     width: 950,
@@ -88,11 +62,51 @@ class StudentScreen extends StatelessWidget {
                                     ),
                                     child: Column(
                                       children: [
+                                        Container(
+                                          padding: EdgeInsets.only(
+                                              left: 20, bottom: 10),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.start,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
+                                            children: [
+                                              Text(
+                                                "Mahasiswa",
+                                                style: TextStyle(
+                                                    fontSize: 15,
+                                                    fontWeight: FontWeight.bold,
+                                                    color:
+                                                        AppColors.purplePiksi),
+                                              ),
+                                              Text(" / ",
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.bold)),
+                                              Text("Kartu Hasil Studi",
+                                                  style: TextStyle(
+                                                      fontSize: 15,
+                                                      fontWeight:
+                                                          FontWeight.normal,
+                                                      color: AppColors
+                                                          .purplePiksi))
+                                            ],
+                                          ),
+                                        ),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
+                                        Divider(),
+                                        SizedBox(
+                                          height: 10,
+                                        ),
                                         tabcontrol(),
                                         headersection(),
                                         ListView.builder(
                                             scrollDirection: Axis.vertical,
-                                            controller:controller.scrollController,
+                                            controller:
+                                                controller.scrollController,
                                             shrinkWrap: true,
                                             itemCount: value!.length,
                                             itemBuilder: ((context, index) {
@@ -115,7 +129,7 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
+                                                        "${index + 1}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -134,7 +148,7 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
+                                                        "${value[index].kodematkul}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -152,7 +166,7 @@ class StudentScreen extends StatelessWidget {
                                                         ),
                                                       ),
                                                       child: Text(
-                                                        "${value[index].id}",
+                                                        "${value[index].matkul}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       ),
@@ -171,26 +185,7 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
-                                                        style: TextStyle(
-                                                            fontSize: 12),
-                                                      )),
-                                                    ),
-                                                    Container(
-                                                      width: 50,
-                                                      padding:
-                                                          EdgeInsets.all(10),
-                                                      decoration: BoxDecoration(
-                                                        border: Border(
-                                                          left: BorderSide(
-                                                              width: 0.5),
-                                                          bottom: BorderSide(
-                                                              width: 0.5),
-                                                        ),
-                                                      ),
-                                                      child: Center(
-                                                          child: Text(
-                                                        "${value[index].id}",
+                                                        "${value[index].sks}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -209,7 +204,26 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
+                                                        "${value[index].nilaiuts}",
+                                                        style: TextStyle(
+                                                            fontSize: 12),
+                                                      )),
+                                                    ),
+                                                    Container(
+                                                      width: 50,
+                                                      padding:
+                                                          EdgeInsets.all(10),
+                                                      decoration: BoxDecoration(
+                                                        border: Border(
+                                                          left: BorderSide(
+                                                              width: 0.5),
+                                                          bottom: BorderSide(
+                                                              width: 0.5),
+                                                        ),
+                                                      ),
+                                                      child: Center(
+                                                          child: Text(
+                                                        "${value[index].nilaiuas}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -228,7 +242,7 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
+                                                        "${controller.checkNilaiHuruf(value[index].partisipasi, value[index].tugas1, value[index].tugas2, value[index].nilaiuts, value[index].nilaiuas)}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -249,7 +263,7 @@ class StudentScreen extends StatelessWidget {
                                                       ),
                                                       child: Center(
                                                           child: Text(
-                                                        "${value[index].id}",
+                                                        "${controller.checkNilaiTotal(value[index].partisipasi, value[index].tugas1, value[index].tugas2, value[index].nilaiuts, value[index].nilaiuas)}",
                                                         style: TextStyle(
                                                             fontSize: 12),
                                                       )),
@@ -264,17 +278,13 @@ class StudentScreen extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                              )
-                              ),
+                              )),
                             ),
                           ),
-                        )
-                        )
-                        )
-                        );
+                        ))));
               } else {
                 return Center(
-                  child: Text("data tidak ada"),
+                  child: CircularProgressIndicator(),
                 );
               }
             },

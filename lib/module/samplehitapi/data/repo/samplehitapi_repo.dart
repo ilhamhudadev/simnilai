@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:standard_project/core/api/api_client.dart';
 import 'package:standard_project/module/samplehitapi/data/constant/samplehitapi_constant.dart';
 import 'package:standard_project/module/samplehitapi/data/model/wilayah_indonesia_model.dart';
-import 'package:dio/dio.dart' as DioPlugin;
 
 class SamplehitapiRepo {
   Future<void> repoFunc() async {

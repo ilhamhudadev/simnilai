@@ -18,6 +18,7 @@ class SamplehitapiScreen extends StatelessWidget {
               builder: (context, snapshot) {
                 if (snapshot.hasData) {
                   var value = snapshot.data;
+
                   return Container(
                       padding: EdgeInsets.all(20),
                       height: AppSize.screenHeight,
@@ -28,25 +29,42 @@ class SamplehitapiScreen extends StatelessWidget {
                           shrinkWrap: true,
                           itemCount: value!.length,
                           itemBuilder: ((context, index) {
-                            return Container(
-                              margin: EdgeInsets.only(bottom: 10),
-                              padding: EdgeInsets.all(20),
-                              decoration: BoxDecoration(
-                                  color: AppColors.white,
-                                  borderRadius: BorderRadius.circular(10),
-                                  border: Border.all(
-                                      color: AppColors.placeholdertextfield)),
-                              child: Column(
-                                  mainAxisAlignment: MainAxisAlignment.start,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                        "Kecamatan : ${value[index].kecamatan}"),
-                                    Text("Kota : ${value[index].kota}"),
-                                    Text("Latitude : ${value[index].lat}"),
-                                    Text("Longitude : ${value[index].lon}"),
-                                  ]),
-                            );
+                            if (controller.checkIfIsAceh(
+                                    value[index].kota.toString()) ==
+                                true) {
+                              return Obx(() => InkWell(
+                                  onTap: () {
+                                    controller.setColorCheck();
+                                  },
+                                  child: Container(
+                                    margin: EdgeInsets.only(bottom: 10),
+                                    padding: EdgeInsets.all(20),
+                                    decoration: BoxDecoration(
+                                        color: controller.colorCheck() == true
+                                            ? AppColors.white
+                                            : AppColors.eerieblack,
+                                        borderRadius: BorderRadius.circular(10),
+                                        border: Border.all(
+                                            color: AppColors
+                                                .placeholdertextfield)),
+                                    child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.start,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.start,
+                                        children: [
+                                          Text(
+                                              "Kecamatan : ${value[index].kecamatan}"),
+                                          Text("Kota : ${value[index].kota}"),
+                                          Text(
+                                              "Latitude : ${value[index].lat}"),
+                                          Text(
+                                              "Longitude : ${value[index].lon}"),
+                                        ]),
+                                  )));
+                            } else {
+                              return Container();
+                            }
                           })));
                 } else {
                   return Center(

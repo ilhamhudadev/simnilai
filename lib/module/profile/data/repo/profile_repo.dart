@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:flutter/material.dart';
-import 'package:standard_project/module/profile/data/model/modelviewUser.dart';
+import 'package:standard_project/module/profile/data/model/student_profile_model.dart';
 
 class ProfileRepo {
   Future<void> repoFunc() async {
@@ -9,7 +9,7 @@ class ProfileRepo {
     }
   }
 
-  Future<MviewUserModel> fetchProfilapi() async {
+  Future<StudentProfileModel> fetchProfilapi() async {
     debugPrint("Print 1");
     try {
       // DioPlugin.Response response = await ApiClient().postData(
@@ -18,12 +18,12 @@ class ProfileRepo {
 
       // ignore: no_leading_underscores_for_local_identifiers
       final Dio _dio = Dio();
-      final response = await _dio
-          .get('https://ibnux.github.io/BMKG-importer/cuaca/wilayah.json');
+      final response =
+          await _dio.get('http://localhost:3000/api/student/user/15301119');
 
       debugPrint("tes ${response.data}");
 
-      MviewUserModel data = MviewUserModel.fromJson(response.data[0]);
+      StudentProfileModel data = StudentProfileModel.fromJson(response.data);
 
       debugPrint("print 3");
 

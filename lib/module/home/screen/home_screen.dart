@@ -167,7 +167,7 @@ class ExampleSidebarX extends StatelessWidget {
         ),
         const SidebarXItem(
           icon: Icons.supervised_user_circle_sharp,
-          label: 'Data Dosen',
+          label: 'Mata Kuliah',
         ),
         const SidebarXItem(
           icon: Icons.person_3,
@@ -222,7 +222,7 @@ class _ScreensExample extends StatelessWidget {
             return KelasScreen();
           // KHS Kelas
           case 3:
-            return TeacherScreen();
+            return TranskripScreen();
           // KHS NPM
           case 4:
             return TranskripScreen();

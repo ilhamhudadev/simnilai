@@ -6,7 +6,7 @@ import 'package:standard_project/core/assets/app_assets.dart';
 import 'package:standard_project/core/style/app_color.dart';
 import 'package:standard_project/core/style/app_size.dart';
 import 'package:standard_project/module/profile/controller/profile_controller.dart';
-import 'package:standard_project/module/profile/data/model/modelviewUser.dart';
+import 'package:standard_project/module/profile/data/model/student_profile_model.dart';
 
 class ProfileScreen extends StatelessWidget {
   @override
@@ -18,7 +18,7 @@ class ProfileScreen extends StatelessWidget {
       builder: (ProfileController controller) {
         return Scaffold(
             backgroundColor: AppColors.abukusuka,
-            body: FutureBuilder<MviewUserModel>(
+            body: FutureBuilder<StudentProfileModel>(
                 future: controller.futureProfilData(),
                 builder: (context, response) {
                   if (response.hasData) {
@@ -30,16 +30,14 @@ class ProfileScreen extends StatelessWidget {
                       ),
                     );
                   } else {
-                    return Center(
-                      child: Text("GAK ADA DATA BROWW"),
-                    );
+                    return Center(child: CircularProgressIndicator());
                   }
                 }));
       },
     );
   }
 
-  Widget profile(BuildContext contextprofil, MviewUserModel value) {
+  Widget profile(BuildContext contextprofil, StudentProfileModel value) {
     return Stack(
       children: [
         Container(
@@ -129,8 +127,7 @@ class ProfileScreen extends StatelessWidget {
                             margin: EdgeInsets.only(
                               left: 30,
                             ),
-                            width: 300,
-                            height: 250,
+                            width: 500,
                             decoration: BoxDecoration(
                               color: Colors.white,
                               borderRadius: BorderRadius.circular(8),
@@ -161,7 +158,6 @@ class ProfileScreen extends StatelessWidget {
                           left: 30,
                         ),
                         width: 500,
-                        height: 300,
                         decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(8),
@@ -226,7 +222,6 @@ class ProfileScreen extends StatelessWidget {
                 ),
                 content: Container(
                   width: 300,
-                  height: 200,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -316,29 +311,37 @@ class ProfileScreen extends StatelessWidget {
   }
 }
 
-Widget isitab(MviewUserModel value, BuildContext contextprofil) {
+Widget isitab(StudentProfileModel data, BuildContext contextprofil) {
+  var value = data.data![0];
   return Column(
     children: [
-      atributtab('Username', "${value.kecamatan}", 35),
+      atributtab('Username', "${value.npm}", 35),
       atributtab('Password', "${value.id}", 10),
-      atributtab('NPM', "${value.lon}", 10),
-      atributtab('Program Studi', "${value.kecamatan}", 10),
-      atributtab('Kelas', '${value.kecamatan}', 10),
-      atributtab('Semester', '${value.kecamatan}', 10),
+      atributtab('NPM', "${value.npm}", 10),
+      atributtab('Program Studi', "${value.program}", 10),
+      atributtab('Kelas', '${value.kelas}', 10),
+      atributtab('Jurusan', '${value.jurusan}', 10),
+      SizedBox(
+        height: 20,
+      )
     ],
   );
 }
 
-Widget isitab2(MviewUserModel value, BuildContext contextprofil) {
+Widget isitab2(StudentProfileModel data, BuildContext contextprofil) {
+  var value = data.data![0];
   return Column(
     children: [
-      atributtab('Nama Lengkap', '${value.lon}', 35),
-      atributtab('Tempat Lahir', '${value.kota}', 13),
-      atributtab('Tanggal Lahir', '${value.propinsi}', 13),
-      atributtab('Jenis Kelamin', '${value.kecamatan}', 13),
-      atributtab('Agama', '${value.kecamatan}', 13),
-      atributtab('Alamat', ' ${value.kecamatan}', 13),
-      atributtab('No.Handphone', '${value.kecamatan}', 13),
+      atributtab('Nama Lengkap', '${value.nama}', 35),
+      atributtab('Tempat Lahir', '${value.tempatlahir}', 13),
+      atributtab('Tanggal Lahir', '${value.tanggallahir}', 13),
+      atributtab('Jenis Kelamin', '${value.kelamin}', 13),
+      atributtab('Agama', '${value.agama}', 13),
+      atributtab('Alamat', ' ${value.alamat1}', 13),
+      atributtab('No.Handphone', '${value.hp}', 13),
+      SizedBox(
+        height: 20,
+      )
     ],
   );
 }
@@ -355,12 +358,15 @@ Widget atributtab(text1, text2, atas) {
         ),
       ),
       Container(
+        width: 300,
         margin: EdgeInsets.only(top: atas, right: 30),
         child: Text(
           text2,
           style: TextStyle(
             fontSize: 17,
           ),
+          maxLines: 3,
+          overflow: TextOverflow.ellipsis,
         ),
       ),
     ],

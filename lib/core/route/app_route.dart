@@ -29,27 +29,14 @@ class AppRoute {
   static final all = [
     GetPage(name: RouteConstant.homeScreen, page: () => HomeScreen()),
     GetPage(name: RouteConstant.authScreen, page: () => AuthScreen()),
-    // GetPage(name: RouteConstant.profilScreen, page: () => ProfileScreen()),
-    // GetPage(name: RouteConstant.ViewUser, page: () => ViewUser()),
     GetPage(name: RouteConstant.teacher, page: () => TeacherScreen()),
-    // GetPage(name: RouteConstant.TeacherScreen, page: () => TeacherScreen()),
-    // GetPage(
-    //     name: RouteConstant.viewnilaiacademic, page: () => viewnilaiacademic()),
-    // GetPage(name: RouteConstant.loginScreen, page: () => loginScreen()),
-    //Module Homescreen
-    // GetPage(name: RouteConstant.homeScreen, page: () => HomeScreen()),
-    // GetPage(name: RouteConstant.auth_screen, page: () => AuthScreen()),
     GetPage(name: RouteConstant.profilScreen, page: () => ProfileScreen()),
-    GetPage(name: RouteConstant.studyScreen, page: () => Studyscreen()),
     GetPage(name: RouteConstant.teacherScreen, page: () => TeacherScreen()),
     GetPage(name: RouteConstant.academicScreen, page: () => AcademicScreen()),
     GetPage(name: RouteConstant.transkipScreen, page: () => TranskripScreen()),
     GetPage(name: RouteConstant.kelasScreen, page: () => KelasScreen()),
     GetPage(name: RouteConstant.teacherScreen, page: () => TeacherScreen()),
-    // GetPage(
-    //     name: RouteConstant.viewnilaiacademic, page: () => viewnilaiacademic()),
     GetPage(name: RouteConstant.sampleHitAPI, page: () => SamplehitapiScreen()),
-
     GetPage(name: RouteConstant.studentScreen, page: () => StudentScreen()),
   ];
 }

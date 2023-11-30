@@ -12,7 +12,7 @@ class StudenttRepo {
     }
   }
 
-  Future<List<ApiStudentModel>> fetchstudentdata() async {
+  Future<StudentKHSModel> fetchstudentdata() async {
     debugPrint("Print 1");
     try {
       // DioPlugin.Response response = await ApiClient().postData(
@@ -21,12 +21,11 @@ class StudenttRepo {
 
       final Dio _dio = Dio();
       final response = await _dio
-          .get('https://ibnux.github.io/BMKG-importer/cuaca/wilayah.json');
+          .get('http://localhost:3000/api/mahasiswa/nilai/khs/1/20307063');
 
       debugPrint("Print 2  ${response.data}");
 
-      List<ApiStudentModel> data =
-          studentfromjson(response.data);
+      StudentKHSModel data = StudentKHSModel.fromJson(response.data);
 
       debugPrint("Print 3 ");
 
